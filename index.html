@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Supper Me — Global Cuisine Desi Vibes</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['"Fredoka"', 'sans-serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              green: '#2E7D32',
+              lime: '#8BC34A',
+              cream: '#FFFDF7',
+              spice: '#FF5722',
+              saffron: '#FFB300',
+              dark: '#141A15',
+            }
+          },
+          animation: {
+            'float': 'float 4s ease-in-out infinite',
+            'bounce-slow': 'bounce 3s infinite',
+            'pulse-glow': 'pulseGlow 2.5s infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-10px)' },
+            },
+            pulseGlow: {
+              '0%, 100%': { boxShadow: '0 0 0 0 rgba(37, 211, 102, 0.6)' },
+              '50%': { boxShadow: '0 0 0 14px rgba(37, 211, 102, 0)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #FFFDF7;
+      color: #141A15;
+      overflow-x: hidden;
+    }
+    .hero-pattern {
+      background-color: #141A15;
+      background-image: 
+        radial-gradient(at 15% 20%, rgba(139, 195, 74, 0.25) 0px, transparent 50%),
+        radial-gradient(at 85% 30%, rgba(255, 87, 34, 0.25) 0px, transparent 50%),
+        radial-gradient(at 50% 85%, rgba(255, 179, 0, 0.2) 0px, transparent 55%);
+    }
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marquee 24s linear infinite;
+    }
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .card-pop {
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease;
+    }
+    .card-pop:hover {
+      transform: translateY(-8px) scale(1.015);
+      box-shadow: 0 22px 40px -12px rgba(20, 26, 21, 0.16);
+    }
+    .location-pill.active {
+      background: linear-gradient(135deg, #2E7D32, #558B2F);
+      color: #ffffff;
+      border-color: #2E7D32;
+      transform: translateX(6px);
+      box-shadow: 0 10px 25px -5px rgba(46, 125, 50, 0.4);
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-brand-saffron selection:text-brand-dark">
+
+  <!-- Sticky Glass Navbar -->
+  <header class="fixed top-0 inset-x-0 z-50 bg-brand-cream/90 backdrop-blur-md border-b border-black/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <!-- Brand Logo -->
+      <a href="#home" class="flex items-center gap-3 group">
+        <div class="w-12 h-12 rounded-2xl bg-brand-lime/25 border-2 border-brand-green flex flex-col items-center justify-center shadow-sm group-hover:rotate-6 transition-transform">
+          <i class="fa-solid fa-utensils text-brand-green text-lg"></i>
+          <span class="text-[8px] font-extrabold tracking-tighter text-brand-green leading-none mt-0.5">SUPPER ME</span>
+        </div>
+        <div>
+          <span class="font-display text-2xl font-bold tracking-tight text-brand-dark block leading-none">Supper Me</span>
+          <span class="text-xs font-semibold text-brand-spice tracking-wide">Global Cuisine • Desi Vibes</span>
+        </div>
+      </a>
+
+      <!-- Navigation Links -->
+      <nav class="hidden md:flex items-center gap-8 font-semibold text-sm text-gray-700">
+        <a href="#home" class="hover:text-brand-green transition-colors">Home</a>
+        <a href="#about" class="hover:text-brand-green transition-colors">About</a>
+        <a href="#menu" class="hover:text-brand-green transition-colors">Menu</a>
+        <a href="#order" class="hover:text-brand-spice transition-colors">Order Online</a>
+        <a href="#locations" class="hover:text-brand-green transition-colors">Locations (9)</a>
+        <a href="#contact" class="hover:text-brand-green transition-colors">Contact</a>
+      </nav>
+
+      <!-- Top CTA -->
+      <div class="flex items-center gap-3">
+        <a href="https://wa.me/917605054750?text=Hi%20Supper%20Me!%20I%20would%20like%20to%20place%20an%20order%20or%20enquire." target="_blank" rel="noopener"
+           class="hidden sm:inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#1ebe5d] text-white font-bold text-sm px-4 py-2.5 rounded-full shadow-md transition-all hover:scale-105">
+          <i class="fa-brands fa-whatsapp text-lg"></i>
+          <span>WhatsApp Us</span>
+        </a>
+        <a href="#order" class="bg-brand-spice hover:bg-orange-600 text-white font-bold text-sm px-5 py-2.5 rounded-full shadow-md transition-all hover:scale-105">
+          Order Now
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero-pattern text-white pt-32 pb-20 lg:pt-40 lg:pb-28 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid lg:grid-cols-12 gap-12 items-center">
+        <!-- Left Copy -->
+        <div class="lg:col-span-7 space-y-6">
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/15 text-brand-saffron text-xs sm:text-sm font-bold tracking-wide uppercase">
+            <span class="w-2 h-2 rounded-full bg-brand-lime animate-ping"></span>
+            Kolkata’s Fastest-Growing Continental QSR • 9 Outlets
+          </div>
+
+          <h1 class="font-display text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.08] tracking-tight">
+            Global Cuisine, <br />
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-lime via-brand-saffron to-brand-spice">
+              Desi Vibes.
+            </span>
+          </h1>
+
+          <p class="text-gray-300 text-lg sm:text-xl max-w-2xl leading-relaxed">
+            From creamy pastas and sizzling grills to gourmet burgers and rice bowls — every Supper Me dish is crafted to deliver a premium continental experience with an unforgettable desi twist. Served fast, fresh, and made for Indian taste buds.
+          </p>
+
+          <!-- Action Buttons -->
+          <div class="flex flex-wrap items-center gap-4 pt-2">
+            <a href="#order" class="px-7 py-4 rounded-2xl bg-gradient-to-r from-brand-spice to-orange-500 hover:from-orange-600 hover:to-brand-spice text-white font-extrabold text-base shadow-xl shadow-orange-600/30 transition-all hover:-translate-y-1 flex items-center gap-2">
+              <i class="fa-solid fa-fire-flame-curved"></i>
+              Order Online Now
+            </a>
+            <a href="#locations" class="px-7 py-4 rounded-2xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold text-base backdrop-blur-sm transition-all flex items-center gap-2">
+              <i class="fa-solid fa-map-location-dot text-brand-saffron"></i>
+              Find All 9 Outlets
+            </a>
+            <a href="https://wa.me/917605054750?text=Hello%20Supper%20Me!%20I%20want%20to%20know%20more%20about%20your%20menu%20and%20outlets." target="_blank" rel="noopener"
+               class="px-6 py-4 rounded-2xl bg-[#25D366]/20 hover:bg-[#25D366] border border-[#25D366]/50 text-white font-bold text-base transition-all flex items-center gap-2">
+              <i class="fa-brands fa-whatsapp text-xl"></i>
+              Chat on WhatsApp
+            </a>
+          </div>
+
+          <!-- Quick Highlights -->
+          <div class="grid grid-cols-3 gap-4 pt-6 border-t border-white/10 max-w-lg">
+            <div>
+              <p class="font-display text-3xl font-bold text-brand-lime">9+</p>
+              <p class="text-xs text-gray-400 font-medium">Malls & Cloud Kitchens</p>
+            </div>
+            <div>
+              <p class="font-display text-3xl font-bold text-brand-saffron">4.9★</p>
+              <p class="text-xs text-gray-400 font-medium">Foodie Loved Rating</p>
+            </div>
+            <div>
+              <p class="font-display text-3xl font-bold text-brand-spice">11AM–11PM</p>
+              <p class="text-xs text-gray-400 font-medium">Fresh Daily Service</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Visual Showcase -->
+        <div class="lg:col-span-5 relative">
+          <div class="relative rounded-3xl overflow-hidden border-4 border-white/15 shadow-2xl animate-float">
+            <img id="hero-showcase-img"
+                 src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=900&q=80"
+                 alt="Supper Me Sizzling Grill Platter"
+                 class="w-full h-[420px] object-cover" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+            <div class="absolute bottom-5 left-5 right-5 flex items-center justify-between">
+              <div>
+                <span class="bg-brand-spice text-white text-[11px] font-extrabold uppercase px-2.5 py-1 rounded-full">Bestseller</span>
+                <h3 class="font-display text-2xl font-bold text-white mt-1">Non Veg Platter & Sizzlers</h3>
+              </div>
+              <a href="#menu" class="w-12 h-12 rounded-full bg-brand-saffron text-brand-dark flex items-center justify-center font-bold hover:scale-110 transition-transform">
+                <i class="fa-solid fa-arrow-down"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Animated Ticker Strip -->
+    <div class="mt-16 bg-brand-saffron text-brand-dark py-3 overflow-hidden font-display font-bold text-sm sm:text-base tracking-wide uppercase border-y-2 border-brand-dark">
+      <div class="marquee-track gap-8">
+        <span>🔥 Sizzling Grills</span> • <span>🍝 Creamy Italian Pasta Sizzler</span> • <span>🐟 Crispy Fish & Chips</span> • <span>🍗 Grilled Chicken Steak Meal</span> • <span>🧇 Nutella Waffle</span> • <span>🇮🇳 Global Cuisine Desi Vibes</span> • <span>🚀 Available on Swiggy, Zomato & Ownly</span> •
+        <span>🔥 Sizzling Grills</span> • <span>🍝 Creamy Italian Pasta Sizzler</span> • <span>🐟 Crispy Fish & Chips</span> • <span>🍗 Grilled Chicken Steak Meal</span> • <span>🧇 Nutella Waffle</span> • <span>🇮🇳 Global Cuisine Desi Vibes</span> • <span>🚀 Available on Swiggy, Zomato & Ownly</span> •
+      </div>
+    </div>
+  </section>
+
+  <!-- About Us Section -->
+  <section id="about" class="py-20 lg:py-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid lg:grid-cols-12 gap-12 items-center">
+      <div class="lg:col-span-6 space-y-6">
+        <span class="inline-block px-3.5 py-1 rounded-full bg-brand-green/10 text-brand-green font-extrabold text-xs uppercase tracking-wider">
+          Our Story • Founded in Kolkata
+        </span>
+        <h2 class="font-display text-4xl sm:text-5xl font-bold text-brand-dark leading-tight">
+          Redefining International Comfort Food for <span class="text-brand-spice">Indian Taste Buds.</span>
+        </h2>
+        <p class="text-gray-600 text-base sm:text-lg leading-relaxed">
+          At <strong>Supper Me</strong>, we believe great food should feel global, comforting, and accessible — all at the same time. Founded in Kolkata, Supper Me is a new-age Continental QSR brand built to bring together globally inspired dishes and Indian flavours to create meals that are bold, familiar, affordable, and full of soul.
+        </p>
+        <p class="text-gray-600 text-base sm:text-lg leading-relaxed">
+          What started as a single dream has now grown into one of Kolkata’s fastest-growing continental QSR brands with <strong>9 operational outlets</strong> across malls and cloud kitchens: <em>South City Mall, Rosedale Plaza, Mani Square Mall, Salt Lake, Avani Riverside Mall, Ballygunge, INOX, Kasba, and Serampore</em>.
+        </p>
+
+        <div class="grid sm:grid-cols-2 gap-4 pt-2">
+          <div class="p-5 rounded-2xl bg-white border border-gray-100 shadow-sm">
+            <div class="w-10 h-10 rounded-xl bg-brand-lime/20 text-brand-green flex items-center justify-center mb-3">
+              <i class="fa-solid fa-bullseye text-lg"></i>
+            </div>
+            <h3 class="font-display font-bold text-lg text-brand-dark">Our Mission</h3>
+            <p class="text-sm text-gray-600 mt-1">To make premium continental cuisine accessible to every Indian consumer without compromising on taste, quality, or experience.</p>
+          </div>
+          <div class="p-5 rounded-2xl bg-white border border-gray-100 shadow-sm">
+            <div class="w-10 h-10 rounded-xl bg-brand-spice/15 text-brand-spice flex items-center justify-center mb-3">
+              <i class="fa-solid fa-gears text-lg"></i>
+            </div>
+            <h3 class="font-display font-bold text-lg text-brand-dark">Innovation-Driven</h3>
+            <p class="text-sm text-gray-600 mt-1">Centralized kitchen systems, SOP-led operations, and tech-enabled delivery ensure speed and consistency at every touchpoint.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Story Card -->
+      <div class="lg:col-span-6">
+        <div class="bg-brand-dark text-white rounded-3xl p-8 sm:p-10 relative overflow-hidden shadow-2xl">
+          <div class="absolute -right-12 -top-12 w-48 h-48 rounded-full bg-brand-spice/20 blur-2xl"></div>
+          <div class="absolute -left-12 -bottom-12 w-48 h-48 rounded-full bg-brand-lime/20 blur-2xl"></div>
+
+          <h3 class="font-display text-2xl sm:text-3xl font-bold text-brand-saffron mb-4">
+            More Than Just a Food Brand — It’s a Movement.
+          </h3>
+          <p class="text-gray-300 leading-relaxed mb-6">
+            Whether you dine with us at a bustling Kolkata mall food court, order hot sizzlers from home, or grab a quick meal on the go, Supper Me serves thousands of happy customers every month as we expand across India.
+          </p>
+
+          <div class="space-y-3">
+            <div class="flex items-center gap-3 bg-white/5 p-3.5 rounded-xl border border-white/10">
+              <i class="fa-solid fa-circle-check text-brand-lime text-xl"></i>
+              <span class="font-semibold text-sm">Creamy Pastas, Sizzling Grills, Gourmet Burgers & Rice Bowls</span>
+            </div>
+            <div class="flex items-center gap-3 bg-white/5 p-3.5 rounded-xl border border-white/10">
+              <i class="fa-solid fa-circle-check text-brand-lime text-xl"></i>
+              <span class="font-semibold text-sm">9 Operational Outlets Across Kolkata, New Town, Howrah & Serampore</span>
+            </div>
+            <div class="flex items-center gap-3 bg-white/5 p-3.5 rounded-xl border border-white/10">
+              <i class="fa-solid fa-circle-check text-brand-lime text-xl"></i>
+              <span class="font-semibold text-sm">Bold Global Recipes Crafted with Authentic Desi Soul</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Signature Menu & Google Drive Gallery Section -->
+  <section id="menu" class="py-20 bg-white border-y border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+        <div>
+          <span class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-brand-spice/10 text-brand-spice font-extrabold text-xs uppercase tracking-wider">
+            <i class="fa-brands fa-google-drive"></i> Fresh From Our Menu & Drive Gallery
+          </span>
+          <h2 class="font-display text-4xl sm:text-5xl font-bold text-brand-dark mt-3">
+            Signature Crowd-Pleasers
+          </h2>
+        </div>
+
+        <!-- Google Drive Folder / Live Link Bar -->
+        <div class="flex flex-wrap items-center gap-3">
+          <a id="drive-folder-link" href="https://drive.google.com" target="_blank" rel="noopener"
+             class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-blue-50 hover:bg-blue-100 text-blue-700 font-bold text-sm border border-blue-200 transition-colors">
+            <i class="fa-brands fa-google-drive text-base"></i>
+            <span>View Full Menu Photos on Drive</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Menu Cards Grid (Populated dynamically so Google Drive IDs plug right in) -->
+      <div id="menu-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Cards injected by JS -->
+      </div>
+
+      <!-- Quick Drive Image ID Helper Banner (Optional subtle helper for owner) -->
+      <div class="mt-10 p-4 rounded-2xl bg-amber-50/80 border border-amber-200/80 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-sm">
+        <div class="flex items-center gap-3 text-amber-900">
+          <i class="fa-brands fa-google-drive text-xl text-amber-600"></i>
+          <span><strong>Google Drive Sync Ready:</strong> Want to swap in your own Drive photo links live? Paste any public Google Drive image link to preview it right here.</span>
+        </div>
+        <button onclick="toggleDriveModal()" class="shrink-0 px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-600 text-white font-bold text-xs transition-colors">
+          Load Drive Photo URL
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Order Online Section (Swiggy, Zomato, Ownly) -->
+  <section id="order" class="py-20 bg-gradient-to-br from-brand-dark via-[#1c261e] to-brand-dark text-white relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="text-center max-w-3xl mx-auto mb-14">
+        <span class="inline-block px-4 py-1 rounded-full bg-brand-saffron/20 text-brand-saffron font-extrabold text-xs uppercase tracking-wider mb-3">
+          Craving Supper Me Right Now?
+        </span>
+        <h2 class="font-display text-4xl sm:text-5xl font-bold">
+          Order Online in One Tap
+        </h2>
+        <p class="text-gray-300 mt-3 text-lg">
+          Hot, sizzling, and packed fresh from your nearest Supper Me outlet. Choose your favorite delivery partner or order directly!
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        <!-- Swiggy Button Card -->
+        <a href="https://www.swiggy.com/search?query=Supper+Me" target="_blank" rel="noopener"
+           class="card-pop group rounded-3xl bg-[#FC8019] p-8 text-white flex flex-col justify-between shadow-xl">
+          <div>
+            <div class="w-14 h-14 rounded-2xl bg-white/20 flex items-center justify-center text-3xl font-black mb-6">
+              S
+            </div>
+            <h3 class="font-display text-3xl font-bold">Order on Swiggy</h3>
+            <p class="text-white/90 text-sm mt-2">Lightning-fast delivery from all 9 Kolkata & Howrah outlets with live tracking.</p>
+          </div>
+          <div class="mt-8 inline-flex items-center gap-2 font-extrabold text-sm bg-white text-[#FC8019] px-5 py-3 rounded-xl w-fit group-hover:gap-4 transition-all">
+            <span>Open Swiggy</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </div>
+        </a>
+
+        <!-- Zomato Button Card -->
+        <a href="https://www.zomato.com/kolkata/restaurants?q=Supper+Me" target="_blank" rel="noopener"
+           class="card-pop group rounded-3xl bg-[#E23744] p-8 text-white flex flex-col justify-between shadow-xl">
+          <div>
+            <div class="w-14 h-14 rounded-2xl bg-white/20 flex items-center justify-center text-3xl font-black italic mb-6">
+              Z
+            </div>
+            <h3 class="font-display text-3xl font-bold">Order on Zomato</h3>
+            <p class="text-white/90 text-sm mt-2">Explore full ratings, combos, and exclusive meal deals delivered to your door.</p>
+          </div>
+          <div class="mt-8 inline-flex items-center gap-2 font-extrabold text-sm bg-white text-[#E23744] px-5 py-3 rounded-xl w-fit group-hover:gap-4 transition-all">
+            <span>Open Zomato</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </div>
+        </a>
+
+        <!-- Ownly Button Card -->
+        <a href="https://ownly.in" target="_blank" rel="noopener"
+           class="card-pop group rounded-3xl bg-gradient-to-br from-brand-green to-emerald-700 p-8 text-white flex flex-col justify-between shadow-xl border border-brand-lime/30">
+          <div>
+            <div class="w-14 h-14 rounded-2xl bg-white/20 flex items-center justify-center text-2xl font-black mb-6">
+              <i class="fa-solid fa-bag-shopping"></i>
+            </div>
+            <div class="flex items-center gap-2">
+              <h3 class="font-display text-3xl font-bold">Order on Ownly</h3>
+              <span class="text-[10px] font-extrabold uppercase bg-brand-saffron text-brand-dark px-2 py-0.5 rounded-full">Direct</span>
+            </div>
+            <p class="text-white/90 text-sm mt-2">Order directly via Ownly for zero middleman markup and direct kitchen priority.</p>
+          </div>
+          <div class="mt-8 inline-flex items-center gap-2 font-extrabold text-sm bg-brand-saffron text-brand-dark px-5 py-3 rounded-xl w-fit group-hover:gap-4 transition-all">
+            <span>Order via Ownly</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Customer Reviews Section -->
+  <section class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-2xl mx-auto mb-14">
+      <span class="inline-block px-3.5 py-1 rounded-full bg-brand-lime/20 text-brand-green font-extrabold text-xs uppercase tracking-wider">
+        What Our Customers Say
+      </span>
+      <h2 class="font-display text-4xl font-bold text-brand-dark mt-2">
+        Loved by Kolkata’s Foodies
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <!-- Review 1 -->
+      <div class="card-pop bg-white p-7 rounded-3xl border border-gray-100 shadow-sm flex flex-col justify-between">
+        <div>
+          <div class="flex items-center gap-1 text-brand-saffron text-sm mb-4">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          </div>
+          <p class="text-gray-700 italic leading-relaxed">
+            “Today I visited this outlet at South City Mall, food court. Ordered few items from the menu, and I really loved their Grilled Fish Sizzler, Special non veg platter and Brownie with Ice Cream. This is a must visit place for foodies. ❤️”
+          </p>
+        </div>
+        <div class="mt-6 pt-4 border-t border-gray-100 flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-brand-spice/15 text-brand-spice font-bold flex items-center justify-center">PS</div>
+          <div>
+            <p class="font-bold text-sm text-brand-dark">Priyasmita Sarkar</p>
+            <p class="text-xs text-gray-500">South City Mall Outlet</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Review 2 -->
+      <div class="card-pop bg-white p-7 rounded-3xl border border-gray-100 shadow-sm flex flex-col justify-between">
+        <div>
+          <div class="flex items-center gap-1 text-brand-saffron text-sm mb-4">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          </div>
+          <p class="text-gray-700 italic leading-relaxed">
+            “The menu has a good mix of continental and Indian options. I tried their sizzler and other dishes which was cooked to perfection – tender and flavorful. The accompanying sides were delicious, and the portion size was satisfying. They also offer some interesting desserts which was the perfect end to the meal.”
+          </p>
+        </div>
+        <div class="mt-6 pt-4 border-t border-gray-100 flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-brand-green/15 text-brand-green font-bold flex items-center justify-center">AN</div>
+          <div>
+            <p class="font-bold text-sm text-brand-dark">Arnab Nandi</p>
+            <p class="text-xs text-gray-500">Verified Foodie</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Review 3 -->
+      <div class="card-pop bg-white p-7 rounded-3xl border border-gray-100 shadow-sm flex flex-col justify-between">
+        <div>
+          <div class="flex items-center gap-1 text-brand-saffron text-sm mb-4">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          </div>
+          <p class="text-gray-700 italic leading-relaxed">
+            “I recently visited this QSR and tried their sizzler, BBQ chicken wings, and fish ball. The sizzler was well-prepared, sizzling hot with tender meat and a rich sauce that enhanced the flavor. The BBQ chicken wings had a smoky, tangy glaze that hit the right balance of sweetness and spice. Quick service made it even better.”
+          </p>
+        </div>
+        <div class="mt-6 pt-4 border-t border-gray-100 flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-brand-saffron/20 text-amber-800 font-bold flex items-center justify-center">PK</div>
+          <div>
+            <p class="font-bold text-sm text-brand-dark">Pritam Kundu</p>
+            <p class="text-xs text-gray-500">Verified Foodie</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive All 9 Locations + Live Google Map Explorer -->
+  <section id="locations" class="py-20 bg-[#F4F7F2] border-t border-gray-200/70">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12">
+        <div>
+          <span class="inline-block px-3.5 py-1 rounded-full bg-brand-green/15 text-brand-green font-extrabold text-xs uppercase tracking-wider">
+            9 Outlets Across Kolkata, Howrah & Hooghly
+          </span>
+          <h2 class="font-display text-4xl sm:text-5xl font-bold text-brand-dark mt-2">
+            Find Your Nearest Supper Me
+          </h2>
+        </div>
+        <p class="text-gray-600 text-sm sm:text-base max-w-md">
+          Click any outlet card to switch the interactive map, get turn-by-turn Google Maps directions, or message that outlet on WhatsApp.
+        </p>
+      </div>
+
+      <div class="grid lg:grid-cols-12 gap-8 items-start">
+        <!-- Left: All 9 Unique Location Cards -->
+        <div id="locations-list" class="lg:col-span-5 space-y-3 max-h-[620px] overflow-y-auto pr-2">
+          <!-- Populated dynamically via JS -->
+        </div>
+
+        <!-- Right: Active Outlet Spotlight & Live Map -->
+        <div class="lg:col-span-7 bg-white rounded-3xl p-5 sm:p-6 shadow-xl border border-gray-100 sticky top-24">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-gray-100">
+            <div>
+              <div class="flex items-center gap-2">
+                <span id="active-loc-badge" class="px-2.5 py-0.5 rounded-full bg-brand-lime/25 text-brand-green text-xs font-extrabold">Mall Food Court</span>
+                <span class="text-xs font-semibold text-gray-500">• Open 11:00 AM – 11:00 PM</span>
+              </div>
+              <h3 id="active-loc-title" class="font-display text-2xl sm:text-3xl font-bold text-brand-dark mt-1">
+                South City Mall
+              </h3>
+              <p id="active-loc-address" class="text-sm text-gray-600 mt-1">
+                4th Floor, Supper Me, Food Court, 375, Prince Anwar Shah Rd, South City Complex, Jadavpur, Kolkata, West Bengal 700068
+              </p>
+            </div>
+          </div>
+
+          <!-- Embedded Google Map Iframe -->
+          <div class="mt-5 rounded-2xl overflow-hidden border border-gray-200 h-[340px] bg-gray-100 relative">
+            <iframe
+              id="location-map-iframe"
+              title="Supper Me Location Map"
+              class="w-full h-full border-0"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              src="https://maps.google.com/maps?q=South%20City%20Mall%20375%20Prince%20Anwar%20Shah%20Rd%20Kolkata%20700068&t=&z=15&ie=UTF8&iwloc=&output=embed">
+            </iframe>
+          </div>
+
+          <!-- Outlet Action Buttons -->
+          <div class="mt-5 flex flex-wrap items-center gap-3">
+            <a id="active-loc-directions"
+               href="https://www.google.com/maps/search/?api=1&query=Supper+Me+South+City+Mall+Kolkata"
+               target="_blank" rel="noopener"
+               class="flex-1 min-w-[180px] inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl bg-brand-dark hover:bg-gray-800 text-white font-bold text-sm transition-colors">
+              <i class="fa-solid fa-diamond-turn-right text-brand-saffron"></i>
+              <span>Open in Google Maps</span>
+            </a>
+            <a id="active-loc-whatsapp"
+               href="https://wa.me/917605054750?text=Hi%20Supper%20Me!%20I%20am%20visiting%20the%20South%20City%20Mall%20outlet."
+               target="_blank" rel="noopener"
+               class="flex-1 min-w-[180px] inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl bg-[#25D366] hover:bg-[#1ebe5d] text-white font-bold text-sm transition-colors">
+              <i class="fa-brands fa-whatsapp text-lg"></i>
+              <span>WhatsApp This Outlet</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact & Footer -->
+  <footer id="contact" class="bg-brand-dark text-white pt-16 pb-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-white/10">
+        <!-- Brand Info -->
+        <div class="space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-11 h-11 rounded-2xl bg-brand-lime/20 border border-brand-lime flex items-center justify-center">
+              <i class="fa-solid fa-utensils text-brand-lime"></i>
+            </div>
+            <div>
+              <h3 class="font-display text-2xl font-bold">Supper Me</h3>
+              <p class="text-xs text-brand-saffron font-semibold">Global Cuisine Desi Vibes</p>
+            </div>
+          </div>
+          <p class="text-gray-400 text-sm leading-relaxed">
+            Making premium continental cuisine accessible to every Indian consumer — fast, fresh, and full of desi soul.
+          </p>
+          <div class="flex items-center gap-3 pt-1">
+            <a href="https://wa.me/917605054750" target="_blank" rel="noopener" aria-label="WhatsApp"
+               class="w-10 h-10 rounded-full bg-[#25D366] text-white flex items-center justify-center hover:scale-110 transition-transform">
+              <i class="fa-brands fa-whatsapp text-lg"></i>
+            </a>
+            <a href="https://www.instagram.com" target="_blank" rel="noopener" aria-label="Instagram"
+               class="w-10 h-10 rounded-full bg-white/10 hover:bg-pink-600 text-white flex items-center justify-center transition-colors">
+              <i class="fa-brands fa-instagram text-lg"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Useful Links -->
+        <div>
+          <h4 class="font-display text-lg font-bold text-brand-saffron mb-4">Useful Links</h4>
+          <ul class="space-y-2.5 text-sm text-gray-300">
+            <li><a href="#home" class="hover:text-brand-lime transition-colors">Home</a></li>
+            <li><a href="#about" class="hover:text-brand-lime transition-colors">About Us</a></li>
+            <li><a href="#menu" class="hover:text-brand-lime transition-colors">Our Menu</a></li>
+            <li><a href="#order" class="hover:text-brand-lime transition-colors">Order Online (Swiggy / Zomato / Ownly)</a></li>
+            <li><a href="#locations" class="hover:text-brand-lime transition-colors">Our 9 Locations</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact Us -->
+        <div>
+          <h4 class="font-display text-lg font-bold text-brand-saffron mb-4">Contact Us</h4>
+          <ul class="space-y-3 text-sm text-gray-300">
+            <li class="flex items-start gap-3">
+              <i class="fa-solid fa-envelope text-brand-lime mt-1"></i>
+              <a href="mailto:support@supperme.com" class="hover:underline">support@supperme.com</a>
+            </li>
+            <li class="flex items-start gap-3">
+              <i class="fa-solid fa-phone text-brand-lime mt-1"></i>
+              <a href="tel:+917605054750" class="hover:underline">+91 76050 54750</a>
+            </li>
+            <li class="flex items-start gap-3">
+              <i class="fa-brands fa-whatsapp text-[#25D366] text-base mt-0.5"></i>
+              <a href="https://wa.me/917605054750?text=Hi%20Supper%20Me!" target="_blank" rel="noopener" class="text-[#25D366] font-bold hover:underline">
+                WhatsApp: 7605054750
+              </a>
+            </li>
+            <li class="flex items-start gap-3">
+              <i class="fa-solid fa-clock text-brand-lime mt-1"></i>
+              <span>11:00 AM – 11:00 PM (Daily)</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Corporate Address -->
+        <div>
+          <h4 class="font-display text-lg font-bold text-brand-saffron mb-4">Headquarters Address</h4>
+          <p class="text-sm text-gray-300 leading-relaxed">
+            CFB-G-04&06, Shilpangan Phase-I, Block-LB, Bidhan Nagar IB Market, Sector-III, Saltlake, Bidhan Nagar, North Twenty Four Parganas, West Bengal, 700106
+          </p>
+        </div>
+      </div>
+
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-400">
+        <p>© 2026 Supper Me. All rights reserved.</p>
+        <p>Global Cuisine • Desi Vibes • Kolkata, India</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp Quick-Chat Button -->
+  <a href="https://wa.me/917605054750?text=Hi%20Supper%20Me!%20I%20would%20like%20to%20order%20or%20ask%20a%20question."
+     target="_blank" rel="noopener"
+     aria-label="Chat with Supper Me on WhatsApp"
+     class="fixed bottom-6 right-6 z-50 flex items-center gap-3 bg-[#25D366] hover:bg-[#1ebe5d] text-white font-bold px-5 py-3.5 rounded-full shadow-2xl animate-pulse-glow transition-transform hover:scale-105">
+    <i class="fa-brands fa-whatsapp text-2xl"></i>
+    <span class="hidden sm:inline text-sm">Chat on WhatsApp</span>
+  </a>
+
+  <!-- Google Drive Image Loader Modal -->
+  <div id="drive-modal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl space-y-4">
+      <div class="flex items-center justify-between">
+        <h3 class="font-display text-xl font-bold text-brand-dark flex items-center gap-2">
+          <i class="fa-brands fa-google-drive text-blue-600"></i> Add Google Drive Menu Photo
+        </h3>
+        <button onclick="toggleDriveModal()" class="text-gray-400 hover:text-gray-700">
+          <i class="fa-solid fa-xmark text-xl"></i>
+        </button>
+      </div>
+      <p class="text-xs text-gray-600">
+        Paste a public Google Drive image share link (e.g., <code>https://drive.google.com/file/d/FILE_ID/view</code>) and choose which menu card to update.
+      </p>
+      <div class="space-y-3">
+        <div>
+          <label class="block text-xs font-bold text-gray-700 mb-1">Select Menu Dish</label>
+          <select id="drive-dish-select" class="w-full rounded-xl border border-gray-300 px-3 py-2 text-sm"></select>
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-gray-700 mb-1">Google Drive Share URL or File ID</label>
+          <input id="drive-url-input" type="text" placeholder="https://drive.google.com/file/d/..." class="w-full rounded-xl border border-gray-300 px-3 py-2 text-sm" />
+        </div>
+      </div>
+      <div class="flex justify-end gap-2 pt-2">
+        <button onclick="toggleDriveModal()" class="px-4 py-2 rounded-xl text-sm font-semibold text-gray-600 hover:bg-gray-100">Cancel</button>
+        <button onclick="applyDriveImage()" class="px-5 py-2 rounded-xl text-sm font-bold bg-brand-green text-white hover:bg-green-800">Update Photo</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Data & Logic -->
+  <script>
+    /**
+     * GOOGLE DRIVE IMAGE HELPER:
+     * Replace `driveFileId` with your real Google Drive file IDs (from "Anyone with the link" share URLs)
+     * and the page will automatically fetch the direct thumbnail/image stream from Google Drive!
+     */
+    function resolveDriveImage(driveFileId, fallbackUrl) {
+      if (driveFileId && driveFileId.trim() !== '') {
+        return `https://drive.google.com/thumbnail?id=${driveFileId.trim()}&sz=w1000`;
+      }
+      return fallbackUrl;
+    }
+
+    const MENU_ITEMS = [
+      {
+        name: "Non Veg Platter",
+        tag: "Signature Feast",
+        desc: "A loaded continental platter featuring succulent grilled meats, crispy wings, herb rice, and rich signature sauces.",
+        driveFileId: "", // Paste Google Drive File ID here
+        fallbackImg: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        name: "Fish & Chips",
+        tag: "Kolkata Classic",
+        desc: "Golden crumb-fried bhetki fillets served crispy with seasoned french fries, lemon wedge, and creamy tartar dip.",
+        driveFileId: "",
+        fallbackImg: "https://images.unsplash.com/photo-1579208575657-c595a05383b7?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        name: "Grilled Chicken Steak Meal",
+        tag: "Chef's Special",
+        desc: "Tender flame-grilled chicken breast glazed in peppery brown jus with herb rice and sautéed garden veggies.",
+        driveFileId: "",
+        fallbackImg: "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        name: "Italian Pasta Sizzler",
+        tag: "Sizzling Hot",
+        desc: "Creamy, cheesy Italian pasta served on a piping-hot sizzler plate with smoky vegetables and garlic toast.",
+        driveFileId: "",
+        fallbackImg: "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        name: "Nutella Waffle",
+        tag: "Sweet Finale",
+        desc: "Warm, crisp Belgian-style waffle generously drizzled with velvety Nutella and whipped cream.",
+        driveFileId: "",
+        fallbackImg: "https://images.unsplash.com/photo-1562376552-0d160a2f238d?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        name: "BBQ Chicken Wings & Fish Balls",
+        tag: "Fan Favorite",
+        desc: "Smoky, tangy glazed BBQ wings paired with crunchy-outside, juicy-inside golden fish balls and house dip.",
+        driveFileId: "",
+        fallbackImg: "https://images.unsplash.com/photo-1527477396000-e27163b481c2?auto=format&fit=crop&w=800&q=80"
+      }
+    ];
+
+    const LOCATIONS = [
+      {
+        name: "South City Mall",
+        badge: "Mall Food Court",
+        area: "Jadavpur, Kolkata",
+        address: "4th Floor, Supper Me, Food Court, 375, Prince Anwar Shah Rd, South City Complex, Jadavpur, Kolkata, West Bengal 700068",
+        mapQuery: "South City Mall 375 Prince Anwar Shah Rd Jadavpur Kolkata 700068"
+      },
+      {
+        name: "INOX – South City Mall",
+        badge: "Cinema Lounge",
+        area: "Jadavpur, Kolkata",
+        address: "Inox, South City Mall, 2nd Floor, 375, Prince Anwar Shah Road, South City Complex, Jadavpur, Kolkata, West Bengal - 700068",
+        mapQuery: "INOX South City Mall Prince Anwar Shah Road Kolkata 700068"
+      },
+      {
+        name: "Rosedale Plaza Mall Complex",
+        badge: "New Town Hub",
+        area: "Action Area III, Newtown",
+        address: "Rosedale Plaza Mall Complex, Rosedale Plaza, Action Area III, Newtown, KOLKATA, New Town, West Bengal 700160",
+        mapQuery: "Rosedale Plaza Mall Complex Action Area III Newtown Kolkata 700160"
+      },
+      {
+        name: "Salt Lake (Flagship & HQ)",
+        badge: "Sector III Flagship",
+        area: "Bidhan Nagar, Kolkata",
+        address: "Module No. G-06, Ground floor, C.F. Building, Shilpangan, LB Block, Sector 3, Kolkata, West Bengal 700106",
+        mapQuery: "Shilpangan LB Block Sector 3 Salt Lake Kolkata 700106"
+      },
+      {
+        name: "Mani Square Mall",
+        badge: "Mall Food Court",
+        area: "EM Bypass, Kolkata",
+        address: "3rd Floor, Mani Square Mall, 164/1, Maniktala Main Rd, EM Bypass, West Bengal 700054",
+        mapQuery: "Mani Square Mall 164/1 Maniktala Main Rd EM Bypass Kolkata 700054"
+      },
+      {
+        name: "Avani Riverside Mall",
+        badge: "Howrah Waterfront",
+        area: "Shibpur, Howrah",
+        address: "3rd Floor, Avani Riverside Mall, 32, Jagat Banerjee Ghat Rd, Choura Bustee, Shibpur, Howrah, Kolkata, West Bengal 711102",
+        mapQuery: "Avani Riverside Mall 32 Jagat Banerjee Ghat Rd Shibpur Howrah 711102"
+      },
+      {
+        name: "Kasba",
+        badge: "High-Street Kitchen",
+        area: "Rajdanga Main Rd, Kolkata",
+        address: "Building 7, 3123, Rajdanga Main Rd, Sector E, East Kolkata Twp, Kolkata, West Bengal 700107",
+        mapQuery: "3123 Rajdanga Main Rd Sector E East Kolkata Twp Kolkata 700107"
+      },
+      {
+        name: "Ballygunge",
+        badge: "South Kolkata",
+        area: "Ballygunge Circular Rd",
+        address: "4/1, Ballygunge Circular Rd, Rowland Row, Ballygunge, Kolkata, West Bengal 700020",
+        mapQuery: "4/1 Ballygunge Circular Rd Rowland Row Ballygunge Kolkata 700020"
+      },
+      {
+        name: "Serampore",
+        badge: "Hooghly Hub",
+        area: "Grand Trunk Rd, Serampore",
+        address: "449/A/2, Grand Trunk Rd, Mahesh, Mahesh Bose Para, Serampore, West Bengal 712202",
+        mapQuery: "449/A/2 Grand Trunk Rd Mahesh Serampore West Bengal 712202"
+      }
+    ];
+
+    function renderMenu() {
+      const grid = document.getElementById('menu-grid');
+      const select = document.getElementById('drive-dish-select');
+      grid.innerHTML = '';
+      select.innerHTML = '';
+
+      MENU_ITEMS.forEach((item, idx) => {
+        const imgUrl = resolveDriveImage(item.driveFileId, item.fallbackImg);
+        const waMsg = encodeURIComponent(`Hi Supper Me! I'd love to order the ${item.name}.`);
+
+        grid.innerHTML += `
+          <div class="card-pop bg-brand-cream rounded-3xl overflow-hidden border border-gray-200/80 flex flex-col justify-between">
+            <div>
+              <div class="relative h-60 overflow-hidden bg-gray-100">
+                <img src="${imgUrl}" alt="${item.name}" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+                <span class="absolute top-3 left-3 bg-brand-dark/85 backdrop-blur-sm text-brand-saffron text-xs font-extrabold px-3 py-1 rounded-full">
+                  ${item.tag}
+                </span>
+              </div>
+              <div class="p-6">
+                <h3 class="font-display text-2xl font-bold text-brand-dark">${item.name}</h3>
+                <p class="text-gray-600 text-sm mt-2 leading-relaxed">${item.desc}</p>
+              </div>
+            </div>
+            <div class="px-6 pb-6 pt-2 flex items-center gap-2">
+              <a href="#order" class="flex-1 text-center py-2.5 rounded-xl bg-brand-spice hover:bg-orange-600 text-white font-bold text-xs transition-colors">
+                Order Online
+              </a>
+              <a href="https://wa.me/917605054750?text=${waMsg}" target="_blank" rel="noopener"
+                 class="px-3.5 py-2.5 rounded-xl bg-[#25D366]/15 hover:bg-[#25D366] text-[#15803d] hover:text-white font-bold text-xs transition-colors"
+                 title="Ask on WhatsApp">
+                <i class="fa-brands fa-whatsapp text-base"></i>
+              </a>
+            </div>
+          </div>
+        `;
+
+        select.innerHTML += `<option value="${idx}">${item.name}</option>`;
+      });
+    }
+
+    function renderLocations() {
+      const list = document.getElementById('locations-list');
+      list.innerHTML = '';
+
+      LOCATIONS.forEach((loc, idx) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = `location-pill w-full text-left p-4 rounded-2xl bg-white border border-gray-200 transition-all duration-200 flex items-start justify-between gap-3 ${idx === 0 ? 'active' : 'hover:border-brand-green'}`;
+        btn.onclick = () => selectLocation(idx);
+
+        btn.innerHTML = `
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="font-display font-bold text-lg leading-tight">${loc.name}</span>
+            </div>
+            <p class="text-xs opacity-80 mt-1 line-clamp-1">${loc.address}</p>
+          </div>
+          <span class="shrink-0 w-8 h-8 rounded-full bg-black/5 flex items-center justify-center text-xs font-bold">
+            <i class="fa-solid fa-location-dot"></i>
+          </span>
+        `;
+        list.appendChild(btn);
+      });
+    }
+
+    function selectLocation(index) {
+      const loc = LOCATIONS[index];
+      document.querySelectorAll('.location-pill').forEach((el, idx) => {
+        el.classList.toggle('active', idx === index);
+      });
+
+      document.getElementById('active-loc-badge').textContent = loc.badge;
+      document.getElementById('active-loc-title').textContent = loc.name;
+      document.getElementById('active-loc-address').textContent = loc.address;
+
+      const encodedMap = encodeURIComponent(loc.mapQuery);
+      document.getElementById('location-map-iframe').src = `https://maps.google.com/maps?q=${encodedMap}&t=&z=15&ie=UTF8&iwloc=&output=embed`;
+      document.getElementById('active-loc-directions').href = `https://www.google.com/maps/search/?api=1&query=${encodedMap}`;
+
+      const waText = encodeURIComponent(`Hi Supper Me! I'm looking for details/orders at your ${loc.name} outlet.`);
+      document.getElementById('active-loc-whatsapp').href = `https://wa.me/917605054750?text=${waText}`;
+    }
+
+    function toggleDriveModal() {
+      const modal = document.getElementById('drive-modal');
+      modal.classList.toggle('hidden');
+      modal.classList.toggle('flex');
+    }
+
+    function applyDriveImage() {
+      const idx = parseInt(document.getElementById('drive-dish-select').value, 10);
+      const raw = document.getElementById('drive-url-input').value.trim();
+      if (!raw) return;
+
+      // Extract File ID if a full Drive URL is pasted, otherwise treat input as raw ID
+      const match = raw.match(/\/d\/([a-zA-Z0-9_-]+)/) || raw.match(/id=([a-zA-Z0-9_-]+)/);
+      MENU_ITEMS[idx].driveFileId = match ? match[1] : raw;
+
+      renderMenu();
+      document.getElementById('drive-url-input').value = '';
+      toggleDriveModal();
+    }
+
+    // Initialize Page
+    renderMenu();
+    renderLocations();
+    selectLocation(0);
+  </script>
+</body>
+</html>
