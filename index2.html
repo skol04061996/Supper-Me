@@ -1,330 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#f6f1e7" />
-  <meta name="description" content="Global comfort food, made with heart. Discover Supper Me, a new-age Continental QSR born in Kolkata." />
-  <title>Supper Me — Comfort food, with a passport</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --cream: #f6f1e7;
-      --paper: #fffdf8;
-      --ink: #1f2c24;
-      --muted: #657067;
-      --green: #214b35;
-      --green-deep: #173a29;
-      --lime: #d7ed9b;
-      --orange: #e86d45;
-      --line: rgba(31, 44, 36, .14);
-      --serif: Georgia, 'Times New Roman', serif;
-      --sans: 'DM Sans', sans-serif;
-      --display: 'Manrope', sans-serif;
-    }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
-    body { margin: 0; background: var(--cream); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
-    a { color: inherit; text-decoration: none; }
-    button { font: inherit; }
-    img { display: block; max-width: 100%; }
-    .top-note { background: var(--green); color: white; text-align: center; padding: 9px 16px; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; }
-    .top-note span { color: var(--lime); }
-    .header { position: sticky; top: 0; z-index: 20; background: rgba(246,241,231,.92); backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
-    .nav { max-width: 1280px; height: 78px; padding: 0 34px; margin: auto; display: flex; align-items: center; justify-content: space-between; }
-    .brand { display: inline-flex; align-items: center; gap: 10px; font-family: var(--display); font-weight: 800; font-size: 21px; letter-spacing: -.07em; }
-    .brand-mark { width: 35px; height: 35px; display: grid; place-items: center; background: var(--orange); color: white; border-radius: 50% 50% 50% 12px; font-size: 17px; transform: rotate(-8deg); }
-    .brand-mark span { transform: rotate(8deg); }
-    .nav-links { display: flex; align-items: center; gap: 34px; font-size: 13px; font-weight: 600; }
-    .nav-links a:not(.button):hover { color: var(--orange); }
-    .button { display: inline-flex; align-items: center; justify-content: center; gap: 10px; border: 0; border-radius: 999px; padding: 14px 21px; background: var(--green); color: white; font-size: 13px; font-weight: 700; transition: transform .2s, background .2s; cursor: pointer; }
-    .button:hover { background: var(--green-deep); transform: translateY(-2px); }
-    .button-light { color: var(--green); background: var(--lime); }
-    .button-light:hover { background: #e4f4b8; }
-    .menu-toggle { display: none; border: 1px solid var(--line); background: transparent; width: 42px; height: 42px; border-radius: 50%; color: var(--ink); font-size: 20px; cursor: pointer; }
-
-    .hero { max-width: 1280px; margin: auto; padding: 54px 34px 76px; min-height: 640px; display: grid; grid-template-columns: 1fr 1.03fr; gap: 46px; align-items: center; }
-    .eyebrow { display: inline-flex; align-items: center; gap: 9px; color: var(--green); font-size: 11px; letter-spacing: .15em; text-transform: uppercase; font-weight: 700; }
-    .eyebrow:before { content: ''; width: 25px; height: 1px; background: var(--orange); }
-    h1, h2, h3, p { margin-top: 0; }
-    h1 { max-width: 580px; margin: 22px 0 18px; font-family: var(--display); font-size: clamp(52px, 6.4vw, 88px); line-height: .99; letter-spacing: -.075em; font-weight: 700; }
-    h1 em { font-family: var(--serif); color: var(--orange); font-weight: 400; letter-spacing: -.08em; }
-    .hero-copy { max-width: 435px; color: var(--muted); font-size: 16px; line-height: 1.75; }
-    .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 19px; margin-top: 29px; }
-    .text-link { font-size: 13px; font-weight: 700; border-bottom: 1px solid var(--ink); padding: 5px 0; }
-    .text-link span { color: var(--orange); margin-left: 5px; }
-    .hero-proof { display: flex; align-items: center; gap: 12px; margin-top: 44px; color: var(--muted); font-size: 11px; }
-    .proof-dots { display: flex; }
-    .proof-dots i { width: 25px; height: 25px; display: block; border-radius: 50%; background: var(--orange); border: 2px solid var(--cream); margin-left: -6px; }
-    .proof-dots i:first-child { margin-left: 0; background: var(--green); }
-    .proof-dots i:last-child { background: #dfa833; }
-    .hero-visual { position: relative; min-height: 510px; }
-    .hero-image { position: absolute; inset: 0 12px 0 20px; width: calc(100% - 32px); height: 100%; object-fit: cover; border-radius: 48% 48% 24px 24px; }
-    .hero-visual:after { content: ''; position: absolute; inset: 0 12px 0 20px; border: 1px solid rgba(255,255,255,.48); border-radius: 48% 48% 24px 24px; pointer-events: none; }
-    .hero-sticker { position: absolute; top: 38px; left: 0; width: 110px; height: 110px; display: grid; place-items: center; text-align: center; padding: 18px; border-radius: 50%; background: var(--lime); color: var(--green); font-family: var(--display); font-weight: 800; font-size: 12px; line-height: 1.25; transform: rotate(-10deg); z-index: 1; }
-    .image-caption { position: absolute; right: 0; bottom: 24px; padding: 15px 19px; border-radius: 16px; background: var(--paper); box-shadow: 0 12px 35px #173a291c; z-index: 1; font-family: var(--display); font-size: 12px; font-weight: 700; }
-    .image-caption small { display: block; color: var(--muted); font-family: var(--sans); font-size: 10px; font-weight: 500; margin-top: 4px; }
-    .ticker { overflow: hidden; background: var(--orange); color: white; padding: 15px 0; transform: rotate(-1deg) scale(1.02); }
-    .ticker-track { display: flex; width: max-content; align-items: center; gap: 26px; animation: marquee 34s linear infinite; font-family: var(--display); font-size: 13px; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
-    .ticker-track b { color: var(--lime); font-size: 19px; }
-    @keyframes marquee { to { transform: translateX(-50%); } }
-
-    .section { max-width: 1280px; margin: auto; padding: 108px 34px; }
-    .section-heading { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 40px; }
-    .section-heading h2 { max-width: 610px; margin: 13px 0 0; font-family: var(--display); font-size: clamp(36px, 4vw, 56px); letter-spacing: -.065em; line-height: 1.04; }
-    .section-heading p { max-width: 330px; margin: 0 0 4px; color: var(--muted); font-size: 14px; line-height: 1.7; }
-    .menu-grid { display: grid; grid-template-columns: 1.15fr .85fr .85fr; gap: 18px; }
-    .food-card { position: relative; min-height: 370px; overflow: hidden; border-radius: 20px; background: #d8d3c7; }
-    .food-card:first-child { min-height: 445px; }
-    .food-card img { width: 100%; height: 100%; min-height: inherit; object-fit: cover; transition: transform .6s; }
-    .food-card:hover img { transform: scale(1.045); }
-    .food-card:after { content: ''; position: absolute; inset: 35% 0 0; background: linear-gradient(transparent, rgba(19,31,23,.78)); }
-    .food-label { position: absolute; z-index: 1; bottom: 24px; left: 24px; right: 24px; color: white; }
-    .food-label span { display: inline-block; margin-bottom: 8px; padding: 6px 9px; border-radius: 999px; background: var(--lime); color: var(--green); font-size: 9px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
-    .food-label h3 { margin: 0; font-family: var(--display); font-size: 23px; letter-spacing: -.04em; }
-    .food-label p { margin: 6px 0 0; color: rgba(255,255,255,.8); font-size: 12px; }
-    .menu-footnote { margin: 19px 0 0; color: var(--muted); font-size: 11px; }
-
-    .story { background: var(--green); color: white; }
-    .story-inner { max-width: 1280px; margin: auto; padding: 100px 34px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
-    .story-photo-wrap { position: relative; min-height: 445px; }
-    .story-photo { position: absolute; inset: 0 40px 30px 0; width: calc(100% - 40px); height: calc(100% - 30px); object-fit: cover; border-radius: 18px; }
-    .story-note { position: absolute; right: 0; bottom: 0; padding: 21px 24px; background: var(--lime); color: var(--green); border-radius: 15px; font-family: var(--serif); font-size: 18px; font-style: italic; transform: rotate(3deg); }
-    .story .eyebrow { color: var(--lime); }
-    .story h2 { margin: 17px 0 20px; max-width: 520px; font-family: var(--display); font-size: clamp(40px, 4.7vw, 61px); line-height: 1.04; letter-spacing: -.07em; }
-    .story h2 em { color: var(--lime); font-family: var(--serif); font-weight: 400; }
-    .story-copy { max-width: 470px; color: rgba(255,255,255,.72); font-size: 14px; line-height: 1.85; }
-    .story .button { margin-top: 15px; }
-
-    .promise { padding-top: 105px; padding-bottom: 105px; }
-    .promise-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 35px; margin-top: 52px; }
-    .promise-card { padding-top: 23px; border-top: 1px solid var(--line); }
-    .promise-icon { width: 43px; height: 43px; display: grid; place-items: center; border-radius: 50%; background: #e9e9d8; font-size: 19px; }
-    .promise-card h3 { margin: 20px 0 8px; font-family: var(--display); font-size: 19px; letter-spacing: -.04em; }
-    .promise-card p { margin: 0; max-width: 310px; color: var(--muted); font-size: 13px; line-height: 1.75; }
-
-    .visit { max-width: 1280px; padding: 0 34px 108px; margin: auto; }
-    .visit-card { display: grid; grid-template-columns: 1fr .8fr; align-items: center; gap: 30px; padding: 48px 55px; border-radius: 24px; background: #e9e6d7; }
-    .visit-card h2 { margin: 12px 0; font-family: var(--display); font-size: clamp(34px, 4vw, 52px); line-height: 1.05; letter-spacing: -.065em; }
-    .visit-card p { max-width: 430px; margin-bottom: 22px; color: var(--muted); font-size: 14px; line-height: 1.7; }
-    .visit-art { min-height: 205px; display: grid; place-items: center; border-radius: 17px; background: var(--orange); color: white; text-align: center; overflow: hidden; position: relative; }
-    .visit-art:before,.visit-art:after { content: ''; position: absolute; width: 220px; height: 220px; border: 1px solid #ffffff55; border-radius: 50%; }
-    .visit-art:before { transform: translate(-75px, 72px); }
-    .visit-art:after { transform: translate(80px, -86px); }
-    .visit-art strong { position: relative; z-index: 1; font-family: var(--display); font-size: 26px; line-height: 1.1; letter-spacing: -.05em; }
-    .visit-art strong span { display: block; font-family: var(--serif); font-size: 20px; font-weight: 400; font-style: italic; }
-
-    .footer { background: var(--green-deep); color: white; padding: 50px 34px 24px; }
-    .footer-inner { max-width: 1212px; margin: auto; }
-    .footer-top { display: flex; align-items: start; justify-content: space-between; gap: 30px; padding-bottom: 42px; }
-    .footer .brand { font-size: 24px; }
-    .footer-blurb { max-width: 270px; margin: 15px 0 0; color: #ffffff9c; font-size: 12px; line-height: 1.7; }
-    .footer-links { display: flex; gap: 55px; }
-    .footer-col strong { display: block; margin-bottom: 13px; color: var(--lime); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; }
-    .footer-col a { display: block; margin: 9px 0; color: #ffffffc2; font-size: 12px; }
-    .footer-col a:hover { color: var(--lime); }
-    .footer-bottom { display: flex; justify-content: space-between; gap: 15px; border-top: 1px solid #ffffff24; padding-top: 19px; color: #ffffff80; font-size: 10px; }
-    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .65s ease, transform .65s ease; }
-    .reveal.visible { opacity: 1; transform: none; }
-    :focus-visible { outline: 3px solid var(--orange); outline-offset: 4px; }
-
-    @media (max-width: 800px) {
-      .nav { height: 68px; padding: 0 20px; }
-      .menu-toggle { display: block; }
-      .nav-links { display: none; position: absolute; top: 67px; left: 0; right: 0; padding: 23px 22px 27px; align-items: stretch; flex-direction: column; gap: 20px; background: var(--cream); border-bottom: 1px solid var(--line); }
-      .nav-links.open { display: flex; }
-      .nav-links .button { align-self: flex-start; }
-      .hero { padding: 48px 22px 60px; grid-template-columns: 1fr; gap: 38px; }
-      .hero-visual { min-height: 440px; margin: 0 6px; }
-      .hero-image { inset: 0 12px 0 12px; width: calc(100% - 24px); }
-      .hero-visual:after { inset: 0 12px 0 12px; }
-      .section { padding: 78px 22px; }
-      .section-heading { display: block; }
-      .section-heading p { margin-top: 16px; }
-      .menu-grid { grid-template-columns: 1fr 1fr; }
-      .food-card:first-child { grid-column: span 2; min-height: 390px; }
-      .food-card { min-height: 310px; }
-      .story-inner { padding: 78px 22px; grid-template-columns: 1fr; gap: 52px; }
-      .story-photo-wrap { min-height: 370px; }
-      .promise-grid { grid-template-columns: 1fr; gap: 26px; margin-top: 35px; }
-      .promise-card { display: grid; grid-template-columns: 52px 1fr; column-gap: 14px; }
-      .promise-icon { grid-row: span 2; }
-      .promise-card h3 { margin: 2px 0 7px; }
-      .visit { padding: 0 22px 78px; }
-      .visit-card { grid-template-columns: 1fr; padding: 32px 25px; }
-      .visit-art { min-height: 180px; }
-      .footer { padding: 42px 22px 20px; }
-      .footer-top { flex-direction: column; }
-      .footer-links { gap: 42px; }
-    }
-    @media (max-width: 480px) {
-      .top-note { font-size: 9px; }
-      .hero { padding-top: 39px; }
-      h1 { font-size: 54px; }
-      .hero-copy { font-size: 14px; }
-      .hero-visual { min-height: 345px; }
-      .hero-sticker { width: 88px; height: 88px; font-size: 10px; }
-      .image-caption { right: 0; bottom: 15px; padding: 12px 14px; }
-      .menu-grid { gap: 10px; }
-      .food-card:first-child { min-height: 300px; }
-      .food-card { min-height: 230px; border-radius: 14px; }
-      .food-label { left: 14px; right: 12px; bottom: 15px; }
-      .food-label h3 { font-size: 17px; }
-      .food-label p { font-size: 10px; }
-      .food-label span { font-size: 8px; }
-      .story-photo-wrap { min-height: 295px; }
-      .story-note { padding: 15px 17px; font-size: 14px; }
-      .footer-links { width: 100%; justify-content: space-between; gap: 15px; }
-      .footer-bottom { flex-direction: column; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
-      .reveal { opacity: 1; transform: none; }
-    }
-  </style>
-</head>
-<body>
-  <div class="top-note">Born in Kolkata <span>✳</span> made for curious appetites</div>
-  <header class="header">
-    <nav class="nav" aria-label="Main navigation">
-      <a class="brand" href="#home" aria-label="Supper Me home"><span class="brand-mark"><span>✳</span></span> supper me</a>
-      <button class="menu-toggle" id="menu-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="nav-links">☰</button>
-      <div class="nav-links" id="nav-links">
-        <a href="#menu">Our food</a>
-        <a href="#story">Our story</a>
-        <a href="#good-food">The good stuff</a>
-        <a class="button" href="#visit">Come say hello <span aria-hidden="true">↗</span></a>
-      </div>
-    </nav>
-  </header>
-
-  <main>
-    <section class="hero" id="home">
-      <div class="hero-content reveal">
-        <span class="eyebrow">A little world on your plate</span>
-        <h1>Comfort food.<br /><em>Big world.</em></h1>
-        <p class="hero-copy">The dishes you love, with a little somewhere-new in every bite. We’re bringing global comfort food to the table—warm, welcoming, and always worth coming back for.</p>
-        <div class="hero-actions">
-          <a class="button" href="#menu">Get a taste <span aria-hidden="true">↓</span></a>
-          <a class="text-link" href="#story">A bit about us <span>↗</span></a>
-        </div>
-        <div class="hero-proof"><span class="proof-dots" aria-hidden="true"><i></i><i></i><i></i></span><span>Made for good meals and even better company.</span></div>
-      </div>
-      <div class="hero-visual reveal">
-        <img class="hero-image" src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1200&q=85" alt="A colorful, generous meal ready to share" fetchpriority="high" />
-        <div class="hero-sticker">GOOD FOOD<br />GOES<br />EVERYWHERE</div>
-        <div class="image-caption">Come hungry. Leave happy.<small>That’s the Supper Me feeling.</small></div>
-      </div>
-    </section>
-
-    <div class="ticker" aria-label="Global comfort food, made with heart">
-      <div class="ticker-track" aria-hidden="true">
-        <span>Global comfort</span><b>✳</b><span>Local heart</span><b>✳</b><span>Made for sharing</span><b>✳</b><span>Born in Kolkata</span><b>✳</b><span>Global comfort</span><b>✳</b><span>Local heart</span><b>✳</b><span>Made for sharing</span><b>✳</b><span>Born in Kolkata</span><b>✳</b>
-      </div>
-    </div>
-
-    <section class="section" id="menu">
-      <div class="section-heading reveal">
-        <div><span class="eyebrow">A seat at our table</span><h2>Familiar feelings.<br />Fresh little twists.</h2></div>
-        <p>We take the comfort you know and love, then follow our curiosity. The result? A menu made to make you feel at home—and take you somewhere new.</p>
-      </div>
-      <div class="menu-grid">
-        <article class="food-card reveal">
-          <img src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1100&q=80" alt="Colorful fresh ingredients served in a generous bowl" loading="lazy" />
-          <div class="food-label"><span>Fresh discoveries</span><h3>A world of flavor, one plate at a time</h3><p>Curious combinations, comforting bites.</p></div>
-        </article>
-        <article class="food-card reveal">
-          <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80" alt="A meal cooked over an open flame" loading="lazy" />
-          <div class="food-label"><span>Made with heart</span><h3>Good things, made to share</h3><p>Pass it around. Make a moment of it.</p></div>
-        </article>
-        <article class="food-card reveal">
-          <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=800&q=80" alt="Fresh vegetables and herbs ready for the table" loading="lazy" />
-          <div class="food-label"><span>Everyday joy</span><h3>A little something for everyone</h3><p>Easy-going food for all kinds of days.</p></div>
-        </article>
-      </div>
-      <p class="menu-footnote">Our menu is always finding new ways to surprise you. Visit us to see what’s cooking.</p>
-    </section>
-
-    <section class="story" id="story">
-      <div class="story-inner">
-        <div class="story-photo-wrap reveal">
-          <img class="story-photo" src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1000&q=85" alt="Friends gathering around a table to share a meal" loading="lazy" />
-          <div class="story-note">A table for everyone.</div>
-        </div>
-        <div class="story-content reveal">
-          <span class="eyebrow">Our story starts here</span>
-          <h2>From Kolkata,<br />with <em>a world of love.</em></h2>
-          <p class="story-copy">We started Supper Me with a simple thought: great food should feel global, comforting, and accessible—all at once. Born in Kolkata, we’re here to make the world of Continental comfort food feel right at home.</p>
-          <p class="story-copy">No passport needed. Just bring your appetite, your people, and a little room for something new.</p>
-          <a class="button button-light" href="#visit">Find your way to us <span aria-hidden="true">↗</span></a>
-        </div>
-      </div>
-    </section>
-
-    <section class="section promise" id="good-food">
-      <div class="section-heading reveal">
-        <div><span class="eyebrow">The Supper Me feeling</span><h2>Good food is just<br />the beginning.</h2></div>
-        <p>We believe the best meals make room for everyone—and leave you with a reason to come back.</p>
-      </div>
-      <div class="promise-grid">
-        <article class="promise-card reveal"><div class="promise-icon" aria-hidden="true">✳</div><h3>Curious by nature</h3><p>Inspired by flavors from around the world, brought together with a fresh point of view.</p></article>
-        <article class="promise-card reveal"><div class="promise-icon" aria-hidden="true">♡</div><h3>Comfort comes first</h3><p>Food should feel welcoming, generous, and easy to enjoy. That’s the heart of every visit.</p></article>
-        <article class="promise-card reveal"><div class="promise-icon" aria-hidden="true">☻</div><h3>Everyone’s invited</h3><p>Whether it’s a quick bite or a long catch-up, there’s always room at the table.</p></article>
-      </div>
-    </section>
-
-    <section class="visit" id="visit">
-      <div class="visit-card reveal">
-        <div>
-          <span class="eyebrow">Your table is waiting</span>
-          <h2>Let’s make it<br />a Supper Me day.</h2>
-          <p>Good food tastes even better together. Drop by, bring your favorite people, and let’s make a meal of it.</p>
-          <a class="button" href="mailto:hello@supperme.in?subject=Hello%20Supper%20Me">Get in touch <span aria-hidden="true">↗</span></a>
-        </div>
-        <div class="visit-art" aria-label="Supper Me, a little world of comfort food"><strong>GOOD FOOD.<span>Good company.</span></strong></div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <div class="footer-inner">
-      <div class="footer-top">
-        <div><a class="brand" href="#home"><span class="brand-mark"><span>✳</span></span> supper me</a><p class="footer-blurb">A new-age Continental QSR from Kolkata, serving up comfort with a passport.</p></div>
-        <div class="footer-links">
-          <div class="footer-col"><strong>Explore</strong><a href="#menu">Our food</a><a href="#story">Our story</a><a href="#good-food">The good stuff</a></div>
-          <div class="footer-col"><strong>Say hello</strong><a href="mailto:hello@supperme.in">Email us ↗</a><a href="#visit">Come visit</a></div>
-        </div>
-      </div>
-      <div class="footer-bottom"><span>© <span id="year"></span> Supper Me. Made with appetite in Kolkata.</span><span>Comfort food, with a passport. ✳</span></div>
-    </div>
-  </footer>
-
+  <title>Supper Me | Biometric Attendance & Employer Command</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
   <script>
-    const toggle = document.getElementById('menu-toggle');
-    const navLinks = document.getElementById('nav-links');
-    toggle.addEventListener('click', () => {
-      const isOpen = navLinks.classList.toggle('open');
-      toggle.setAttribute('aria-expanded', String(isOpen));
-      toggle.setAttribute('aria-label', isOpen ? 'Close navigation' : 'Open navigation');
-      toggle.textContent = isOpen ? '×' : '☰';
-    });
-    navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
-      navLinks.classList.remove('open');
-      toggle.setAttribute('aria-expanded', 'false');
-      toggle.setAttribute('aria-label', 'Open navigation');
-      toggle.textContent = '☰';
-    }));
-    document.getElementById('year').textContent = new Date().getFullYear();
-    if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      const observer = new IntersectionObserver(entries => entries.forEach(entry => {
-        if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
-      }), { threshold: 0.12 });
-      document.querySelectorAll('.reveal').forEach(element => observer.observe(element));
-    } else {
-      document.querySelectorAll('.reveal').forEach(element => element.classList.add('visible'));
+    tailwind.config = {
+      darkMode: 'class',
+      theme: { extend: {
+        fontFamily: { sans: ['Inter','sans-serif'], mono: ['JetBrains Mono','monospace'] },
+        colors: { obsidian:'#090d16', slateCard:'#111827', slateElevated:'#161f32', borderSubtle:'#1f2937', emeraldBrand:'#10b981', crimsonBrand:'#ef4444', amberBrand:'#f59e0b' }
+      } }
     }
   </script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    body{background:#090d16;color:#f8fafc;font-family:'Inter',sans-serif;overflow-x:hidden}
+    ::-webkit-scrollbar{width:6px;height:6px}::-webkit-scrollbar-track{background:#090d16}::-webkit-scrollbar-thumb{background:#1f2937;border-radius:9999px}
+    .tabular-nums{font-variant-numeric:tabular-nums}.glass-card{background:rgba(17,24,39,.88);backdrop-filter:blur(12px);border:1px solid #1f2937}
+  </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-5">
+  <main class="glass-card max-w-xl w-full rounded-3xl p-8 text-center shadow-2xl">
+    <div class="mx-auto w-14 h-14 rounded-2xl bg-emeraldBrand/15 border border-emeraldBrand/40 flex items-center justify-center text-emeraldBrand">
+      <i data-lucide="utensils" class="w-7 h-7"></i>
+    </div>
+    <h1 class="mt-5 text-3xl font-extrabold tracking-tight">SUPPER ME</h1>
+    <p class="mt-2 text-sm text-slate-400">Kolkata Hospitality Attendance &amp; Operations System</p>
+    <p class="mt-6 text-slate-300">The original Supper Me staff kiosk version is being restored.</p>
+    <a href="https://github.com/skol04061996/Supper-Me" class="inline-flex mt-6 py-3 px-5 rounded-xl bg-emeraldBrand text-obsidian font-bold text-sm">Open Repository</a>
+  </main>
+  <script>lucide.createIcons();</script>
 </body>
 </html>
