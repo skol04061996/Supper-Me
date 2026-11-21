@@ -84,6 +84,23 @@
       transform: translateX(6px);
       box-shadow: 0 10px 25px -5px rgba(46, 125, 50, 0.4);
     }
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .menu-filter.active {
+      background: #2E7D32;
+      color: #fff;
+      border-color: #2E7D32;
+      box-shadow: 0 8px 18px -8px rgba(46, 125, 50, 0.55);
+    }
+    #order-shortlist { transform: translate(-50%, 120px); transition: transform 0.35s ease; }
+    #order-shortlist.show { transform: translate(-50%, 0); }
   </style>
 </head>
 <body class="antialiased selection:bg-brand-saffron selection:text-brand-dark">
@@ -115,6 +132,10 @@
 
       <!-- Top CTA -->
       <div class="flex items-center gap-3">
+        <button id="mobile-menu-button" type="button" aria-label="Open navigation" aria-expanded="false"
+                class="md:hidden w-11 h-11 rounded-xl border border-gray-200 bg-white text-brand-dark">
+          <i class="fa-solid fa-bars"></i>
+        </button>
         <a href="https://wa.me/917605054750?text=Hi%20Supper%20Me!%20I%20would%20like%20to%20place%20an%20order%20or%20enquire." target="_blank" rel="noopener"
            class="hidden sm:inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#1ebe5d] text-white font-bold text-sm px-4 py-2.5 rounded-full shadow-md transition-all hover:scale-105">
           <i class="fa-brands fa-whatsapp text-lg"></i>
@@ -125,6 +146,16 @@
         </a>
       </div>
     </div>
+    <nav id="mobile-menu" class="md:hidden hidden px-4 pb-4 bg-brand-cream border-t border-gray-100">
+      <div class="grid grid-cols-2 gap-2 pt-3 text-sm font-bold text-gray-700">
+        <a href="#home" class="mobile-nav-link p-3 rounded-xl bg-white">Home</a>
+        <a href="#about" class="mobile-nav-link p-3 rounded-xl bg-white">About</a>
+        <a href="#menu" class="mobile-nav-link p-3 rounded-xl bg-white">Menu</a>
+        <a href="#order" class="mobile-nav-link p-3 rounded-xl bg-white">Order</a>
+        <a href="#locations" class="mobile-nav-link p-3 rounded-xl bg-white">Locations</a>
+        <a href="#contact" class="mobile-nav-link p-3 rounded-xl bg-white">Contact</a>
+      </div>
+    </nav>
   </header>
 
   <!-- Hero Section -->
@@ -305,6 +336,20 @@
       </div>
 
       <!-- Menu Cards Grid (Populated dynamically so Google Drive IDs plug right in) -->
+      <div class="mb-8 flex flex-col sm:flex-row gap-3 sm:items-center justify-between">
+        <div id="menu-filters" class="flex flex-wrap gap-2">
+          <button type="button" data-filter="All" class="menu-filter active px-4 py-2 rounded-full border border-gray-200 text-sm font-bold transition-all">All</button>
+          <button type="button" data-filter="Sizzlers" class="menu-filter px-4 py-2 rounded-full border border-gray-200 text-sm font-bold transition-all">Sizzlers</button>
+          <button type="button" data-filter="Chicken" class="menu-filter px-4 py-2 rounded-full border border-gray-200 text-sm font-bold transition-all">Chicken</button>
+          <button type="button" data-filter="Sides" class="menu-filter px-4 py-2 rounded-full border border-gray-200 text-sm font-bold transition-all">Sides</button>
+          <button type="button" data-filter="Dessert" class="menu-filter px-4 py-2 rounded-full border border-gray-200 text-sm font-bold transition-all">Dessert</button>
+        </div>
+        <label class="relative block sm:w-72">
+          <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400"></i>
+          <input id="menu-search" type="search" placeholder="Search dishes..."
+                 class="w-full rounded-full border border-gray-200 bg-white pl-10 pr-4 py-2.5 text-sm outline-none focus:border-brand-green focus:ring-2 focus:ring-brand-green/15" />
+        </label>
+      </div>
       <div id="menu-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
         <!-- Cards injected by JS -->
       </div>
@@ -653,6 +698,22 @@
           <input id="drive-url-input" type="text" placeholder="https://drive.google.com/file/d/..." class="w-full rounded-xl border border-gray-300 px-3 py-2 text-sm" />
         </div>
       </div>
+
+      <div id="order-shortlist"
+           class="fixed bottom-6 left-1/2 z-40 hidden w-[calc(100%-2rem)] max-w-md items-center justify-between gap-3 rounded-2xl bg-brand-dark px-4 py-3 text-white shadow-2xl sm:flex">
+        <button type="button" onclick="clearShortlist()" class="shrink-0 text-gray-300 hover:text-white" aria-label="Clear selected dishes">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="min-w-0">
+          <p id="shortlist-count" class="text-xs font-bold text-brand-saffron">0 dishes selected</p>
+          <p id="shortlist-names" class="truncate text-sm font-semibold">Start by adding a favourite</p>
+        </div>
+        <a id="shortlist-whatsapp" href="https://wa.me/917605054750"
+           target="_blank" rel="noopener"
+           class="shrink-0 rounded-xl bg-[#25D366] px-4 py-2 text-sm font-bold text-white">
+          Enquire
+        </a>
+      </div>
       <div class="flex justify-end gap-2 pt-2">
         <button onclick="toggleDriveModal()" class="px-4 py-2 rounded-xl text-sm font-semibold text-gray-600 hover:bg-gray-100">Cancel</button>
         <button onclick="applyDriveImage()" class="px-5 py-2 rounded-xl text-sm font-bold bg-brand-green text-white hover:bg-green-800">Update Photo</button>
@@ -678,6 +739,7 @@
       {
         name: "Non Veg Platter",
         tag: "Signature Feast",
+        category: "Sizzlers",
         desc: "A loaded continental platter featuring succulent grilled meats, crispy wings, herb rice, and rich signature sauces.",
         driveFileId: "", // Paste Google Drive File ID here
         fallbackImg: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80"
@@ -685,6 +747,7 @@
       {
         name: "Fish & Chips",
         tag: "Kolkata Classic",
+        category: "Sides",
         desc: "Golden crumb-fried bhetki fillets served crispy with seasoned french fries, lemon wedge, and creamy tartar dip.",
         driveFileId: "",
         fallbackImg: "https://images.unsplash.com/photo-1579208575657-c595a05383b7?auto=format&fit=crop&w=800&q=80"
@@ -692,6 +755,7 @@
       {
         name: "Grilled Chicken Steak Meal",
         tag: "Chef's Special",
+        category: "Chicken",
         desc: "Tender flame-grilled chicken breast glazed in peppery brown jus with herb rice and sautéed garden veggies.",
         driveFileId: "",
         fallbackImg: "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=800&q=80"
@@ -699,6 +763,7 @@
       {
         name: "Italian Pasta Sizzler",
         tag: "Sizzling Hot",
+        category: "Sizzlers",
         desc: "Creamy, cheesy Italian pasta served on a piping-hot sizzler plate with smoky vegetables and garlic toast.",
         driveFileId: "",
         fallbackImg: "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?auto=format&fit=crop&w=800&q=80"
@@ -706,6 +771,7 @@
       {
         name: "Nutella Waffle",
         tag: "Sweet Finale",
+        category: "Dessert",
         desc: "Warm, crisp Belgian-style waffle generously drizzled with velvety Nutella and whipped cream.",
         driveFileId: "",
         fallbackImg: "https://images.unsplash.com/photo-1562376552-0d160a2f238d?auto=format&fit=crop&w=800&q=80"
@@ -713,6 +779,7 @@
       {
         name: "BBQ Chicken Wings & Fish Balls",
         tag: "Fan Favorite",
+        category: "Sides",
         desc: "Smoky, tangy glazed BBQ wings paired with crunchy-outside, juicy-inside golden fish balls and house dip.",
         driveFileId: "",
         fallbackImg: "https://images.unsplash.com/photo-1527477396000-e27163b481c2?auto=format&fit=crop&w=800&q=80"
@@ -785,6 +852,10 @@
       }
     ];
 
+    let activeMenuFilter = 'All';
+    let menuSearch = '';
+    const shortlistedItems = new Set();
+
     function renderMenu() {
       const grid = document.getElementById('menu-grid');
       const select = document.getElementById('drive-dish-select');
@@ -792,17 +863,30 @@
       select.innerHTML = '';
 
       MENU_ITEMS.forEach((item, idx) => {
+        const matchesFilter = activeMenuFilter === 'All' || item.category === activeMenuFilter;
+        const matchesSearch = `${item.name} ${item.desc} ${item.tag}`.toLowerCase().includes(menuSearch);
+        if (!matchesFilter || !matchesSearch) {
+          select.innerHTML += `<option value="${idx}">${item.name}</option>`;
+          return;
+        }
+
         const imgUrl = resolveDriveImage(item.driveFileId, item.fallbackImg);
         const waMsg = encodeURIComponent(`Hi Supper Me! I'd love to order the ${item.name}.`);
+        const isSelected = shortlistedItems.has(item.name);
 
         grid.innerHTML += `
-          <div class="card-pop bg-brand-cream rounded-3xl overflow-hidden border border-gray-200/80 flex flex-col justify-between">
+          <article class="menu-card card-pop bg-brand-cream rounded-3xl overflow-hidden border border-gray-200/80 flex flex-col justify-between" data-category="${item.category}">
             <div>
               <div class="relative h-60 overflow-hidden bg-gray-100">
                 <img src="${imgUrl}" alt="${item.name}" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
                 <span class="absolute top-3 left-3 bg-brand-dark/85 backdrop-blur-sm text-brand-saffron text-xs font-extrabold px-3 py-1 rounded-full">
                   ${item.tag}
                 </span>
+                <button type="button" onclick="toggleShortlist('${item.name.replace(/'/g, "\\'")}')"
+                        class="absolute top-3 right-3 w-10 h-10 rounded-full ${isSelected ? 'bg-brand-spice text-white' : 'bg-white/95 text-brand-dark'} shadow-md transition-all hover:scale-110"
+                        aria-label="${isSelected ? 'Remove' : 'Add'} ${item.name} ${isSelected ? 'from' : 'to'} order shortlist">
+                  <i class="${isSelected ? 'fa-solid' : 'fa-regular'} fa-heart"></i>
+                </button>
               </div>
               <div class="p-6">
                 <h3 class="font-display text-2xl font-bold text-brand-dark">${item.name}</h3>
@@ -810,20 +894,28 @@
               </div>
             </div>
             <div class="px-6 pb-6 pt-2 flex items-center gap-2">
-              <a href="#order" class="flex-1 text-center py-2.5 rounded-xl bg-brand-spice hover:bg-orange-600 text-white font-bold text-xs transition-colors">
-                Order Online
-              </a>
+              <button type="button" onclick="toggleShortlist('${item.name.replace(/'/g, "\\'")}')"
+                      class="flex-1 py-2.5 rounded-xl ${isSelected ? 'bg-brand-green text-white' : 'bg-brand-spice hover:bg-orange-600 text-white'} font-bold text-xs transition-colors">
+                ${isSelected ? 'Added to shortlist' : 'Add to shortlist'}
+              </button>
               <a href="https://wa.me/917605054750?text=${waMsg}" target="_blank" rel="noopener"
                  class="px-3.5 py-2.5 rounded-xl bg-[#25D366]/15 hover:bg-[#25D366] text-[#15803d] hover:text-white font-bold text-xs transition-colors"
                  title="Ask on WhatsApp">
                 <i class="fa-brands fa-whatsapp text-base"></i>
               </a>
             </div>
-          </div>
+          </article>
         `;
 
         select.innerHTML += `<option value="${idx}">${item.name}</option>`;
       });
+
+      if (!grid.innerHTML) {
+        grid.innerHTML = `<div class="sm:col-span-2 lg:col-span-3 rounded-3xl border border-dashed border-gray-300 p-10 text-center text-gray-500">
+          <i class="fa-solid fa-magnifying-glass mb-3 text-2xl"></i>
+          <p class="font-bold">No dishes match this search.</p>
+        </div>`;
+      }
     }
 
     function renderLocations() {
@@ -889,10 +981,97 @@
       toggleDriveModal();
     }
 
+    function toggleShortlist(name) {
+      if (shortlistedItems.has(name)) {
+        shortlistedItems.delete(name);
+      } else {
+        shortlistedItems.add(name);
+      }
+      updateShortlist();
+      renderMenu();
+    }
+
+    function clearShortlist() {
+      shortlistedItems.clear();
+      updateShortlist();
+      renderMenu();
+    }
+
+    function updateShortlist() {
+      const bar = document.getElementById('order-shortlist');
+      const count = document.getElementById('shortlist-count');
+      const names = document.getElementById('shortlist-names');
+      const whatsapp = document.getElementById('shortlist-whatsapp');
+      const selected = [...shortlistedItems];
+
+      if (selected.length === 0) {
+        bar.classList.remove('show');
+        return;
+      }
+
+      bar.classList.remove('hidden');
+      bar.classList.add('show');
+      count.textContent = `${selected.length} dish${selected.length === 1 ? '' : 'es'} selected`;
+      names.textContent = selected.join(' • ');
+      const message = encodeURIComponent(`Hi Supper Me! I'd like to enquire about: ${selected.join(', ')}.`);
+      whatsapp.href = `https://wa.me/917605054750?text=${message}`;
+    }
+
+    function setupMenuFilters() {
+      document.querySelectorAll('.menu-filter').forEach((button) => {
+        button.addEventListener('click', () => {
+          activeMenuFilter = button.dataset.filter;
+          document.querySelectorAll('.menu-filter').forEach((item) => item.classList.remove('active'));
+          button.classList.add('active');
+          renderMenu();
+        });
+      });
+
+      document.getElementById('menu-search').addEventListener('input', (event) => {
+        menuSearch = event.target.value.trim().toLowerCase();
+        renderMenu();
+      });
+    }
+
+    function setupMobileNavigation() {
+      const button = document.getElementById('mobile-menu-button');
+      const menu = document.getElementById('mobile-menu');
+      button.addEventListener('click', () => {
+        const isOpen = !menu.classList.contains('hidden');
+        menu.classList.toggle('hidden', isOpen);
+        button.setAttribute('aria-expanded', String(!isOpen));
+        button.innerHTML = `<i class="fa-solid ${isOpen ? 'fa-bars' : 'fa-xmark'}"></i>`;
+      });
+      document.querySelectorAll('.mobile-nav-link').forEach((link) => {
+        link.addEventListener('click', () => {
+          menu.classList.add('hidden');
+          button.setAttribute('aria-expanded', 'false');
+          button.innerHTML = '<i class="fa-solid fa-bars"></i>';
+        });
+      });
+    }
+
+    function setupRevealAnimations() {
+      const targets = document.querySelectorAll('#about > div, #menu-grid, #order .grid, #locations .grid, footer');
+      targets.forEach((target) => target.classList.add('reveal'));
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      targets.forEach((target) => observer.observe(target));
+    }
+
     // Initialize Page
     renderMenu();
     renderLocations();
     selectLocation(0);
+    setupMenuFilters();
+    setupMobileNavigation();
+    setupRevealAnimations();
   </script>
 </body>
 </html>
