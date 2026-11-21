@@ -312,7 +312,7 @@
     </div>
   </section>
 
-  <!-- Signature Menu & Google Drive Gallery Section -->
+  <!-- Full Menu Section -->
   <section id="menu" class="py-20 bg-white border-y border-gray-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
@@ -321,29 +321,15 @@
             <i class="fa-solid fa-bowl-food"></i> Made Fresh, Served Hot
           </span>
           <h2 class="font-display text-4xl sm:text-5xl font-bold text-brand-dark mt-3">
-            Signature Crowd-Pleasers
+            Explore the Menu
           </h2>
         </div>
 
-        <!-- Google Drive Folder / Live Link Bar -->
-        <div class="flex flex-wrap items-center gap-3">
-          <a id="drive-folder-link" href="https://drive.google.com/drive/folders/1zwkSqNlKg1kW-HFxDBIE_zCXV1wQOf-a?usp=drive_link" target="_blank" rel="noopener"
-             class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-blue-50 hover:bg-blue-100 text-blue-700 font-bold text-sm border border-blue-200 transition-colors">
-            <i class="fa-brands fa-google-drive text-base"></i>
-            <span>Browse the Food Gallery</span>
-          </a>
-        </div>
       </div>
 
-      <!-- Menu Cards Grid (Populated dynamically so Google Drive IDs plug right in) -->
+      <!-- Menu cards are populated from the full photo gallery below -->
       <div class="mb-8 flex flex-col sm:flex-row gap-3 sm:items-center justify-between">
-        <div id="menu-filters" class="flex flex-wrap gap-2">
-          <button type="button" data-filter="All" class="menu-filter active px-4 py-2 rounded-full border border-gray-200 text-sm font-bold transition-all">All</button>
-          <button type="button" data-filter="Sizzlers" class="menu-filter px-4 py-2 rounded-full border border-gray-200 text-sm font-bold transition-all">Sizzlers</button>
-          <button type="button" data-filter="Chicken" class="menu-filter px-4 py-2 rounded-full border border-gray-200 text-sm font-bold transition-all">Chicken</button>
-          <button type="button" data-filter="Sides" class="menu-filter px-4 py-2 rounded-full border border-gray-200 text-sm font-bold transition-all">Sides</button>
-          <button type="button" data-filter="Dessert" class="menu-filter px-4 py-2 rounded-full border border-gray-200 text-sm font-bold transition-all">Dessert</button>
-        </div>
+        <div id="menu-filters" class="flex flex-wrap gap-2"></div>
         <label class="relative block sm:w-72">
           <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400"></i>
           <input id="menu-search" type="search" placeholder="Search dishes..."
@@ -354,7 +340,7 @@
         <!-- Cards injected by JS -->
       </div>
 
-      <!-- Quick Drive Image ID Helper Banner (Optional subtle helper for owner) -->
+      <!-- Menu discovery tip -->
       <div class="mt-10 p-4 rounded-2xl bg-amber-50/80 border border-amber-200/80 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-sm">
         <div class="flex items-center gap-3 text-amber-900">
           <i class="fa-solid fa-wand-magic-sparkles text-xl text-amber-600"></i>
@@ -674,117 +660,89 @@
     <span class="hidden sm:inline text-sm">Chat on WhatsApp</span>
   </a>
 
-  <!-- Google Drive Image Loader Modal -->
-  <div id="drive-modal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm hidden items-center justify-center p-4">
-    <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl space-y-4">
-      <div class="flex items-center justify-between">
-        <h3 class="font-display text-xl font-bold text-brand-dark flex items-center gap-2">
-          <i class="fa-brands fa-google-drive text-blue-600"></i> Add Google Drive Menu Photo
-        </h3>
-        <button onclick="toggleDriveModal()" class="text-gray-400 hover:text-gray-700">
-          <i class="fa-solid fa-xmark text-xl"></i>
-        </button>
-      </div>
-      <p class="text-xs text-gray-600">
-        Paste a public Google Drive image share link (e.g., <code>https://drive.google.com/file/d/FILE_ID/view</code>) and choose which menu card to update.
-      </p>
-      <div class="space-y-3">
-        <div>
-          <label class="block text-xs font-bold text-gray-700 mb-1">Select Menu Dish</label>
-          <select id="drive-dish-select" class="w-full rounded-xl border border-gray-300 px-3 py-2 text-sm"></select>
-        </div>
-        <div>
-          <label class="block text-xs font-bold text-gray-700 mb-1">Google Drive Share URL or File ID</label>
-          <input id="drive-url-input" type="text" placeholder="https://drive.google.com/file/d/..." class="w-full rounded-xl border border-gray-300 px-3 py-2 text-sm" />
-        </div>
-      </div>
-
-      <div id="order-shortlist"
-           class="fixed bottom-6 left-1/2 z-40 hidden w-[calc(100%-2rem)] max-w-md items-center justify-between gap-3 rounded-2xl bg-brand-dark px-4 py-3 text-white shadow-2xl sm:flex">
-        <button type="button" onclick="clearShortlist()" class="shrink-0 text-gray-300 hover:text-white" aria-label="Clear selected dishes">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
-        <div class="min-w-0">
-          <p id="shortlist-count" class="text-xs font-bold text-brand-saffron">0 dishes selected</p>
-          <p id="shortlist-names" class="truncate text-sm font-semibold">Start by adding a favourite</p>
-        </div>
-        <a id="shortlist-whatsapp" href="https://wa.me/917605054750"
-           target="_blank" rel="noopener"
-           class="shrink-0 rounded-xl bg-[#25D366] px-4 py-2 text-sm font-bold text-white">
-          Enquire
-        </a>
-      </div>
-      <div class="flex justify-end gap-2 pt-2">
-        <button onclick="toggleDriveModal()" class="px-4 py-2 rounded-xl text-sm font-semibold text-gray-600 hover:bg-gray-100">Cancel</button>
-        <button onclick="applyDriveImage()" class="px-5 py-2 rounded-xl text-sm font-bold bg-brand-green text-white hover:bg-green-800">Update Photo</button>
-      </div>
+  <div id="order-shortlist"
+       class="fixed bottom-6 left-1/2 z-40 hidden w-[calc(100%-2rem)] max-w-md items-center justify-between gap-3 rounded-2xl bg-brand-dark px-4 py-3 text-white shadow-2xl">
+    <button type="button" onclick="clearShortlist()" class="shrink-0 text-gray-300 hover:text-white" aria-label="Clear selected dishes">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+    <div class="min-w-0">
+      <p id="shortlist-count" class="text-xs font-bold text-brand-saffron">0 dishes selected</p>
+      <p id="shortlist-names" class="truncate text-sm font-semibold">Start by adding a favourite</p>
     </div>
+    <a id="shortlist-whatsapp" href="https://wa.me/917605054750"
+       target="_blank" rel="noopener"
+       class="shrink-0 rounded-xl bg-[#25D366] px-4 py-2 text-sm font-bold text-white">
+      Enquire
+    </a>
   </div>
 
   <!-- Interactive Data & Logic -->
   <script>
-    /**
-     * GOOGLE DRIVE IMAGE HELPER:
-     * Replace `driveFileId` with your real Google Drive file IDs (from "Anyone with the link" share URLs)
-     * and the page will automatically fetch the direct thumbnail/image stream from Google Drive!
-     */
-    function resolveDriveImage(driveFileId, fallbackUrl) {
-      if (driveFileId && driveFileId.trim() !== '') {
-        return `https://drive.google.com/thumbnail?id=${driveFileId.trim()}&sz=w1000`;
-      }
-      return fallbackUrl;
+    function resolveDriveImage(driveFileId) {
+      return `https://drive.google.com/thumbnail?id=${driveFileId}&sz=w1000`;
     }
 
     const MENU_ITEMS = [
-      {
-        name: "Non Veg Continental Platter",
-        tag: "Signature Feast",
-        category: "Sizzlers",
-        desc: "A loaded continental platter featuring succulent grilled meats, crispy wings, herb rice, and rich signature sauces.",
-        driveFileId: "1iWGT6dpAnOwVnYtOzS0QDmlfJxXHpvD0",
-        fallbackImg: "https://drive.google.com/thumbnail?id=1iWGT6dpAnOwVnYtOzS0QDmlfJxXHpvD0&sz=w1000"
-      },
-      {
-        name: "Crumb Fried Fish with Tartar Sauce",
-        tag: "Kolkata Classic",
-        category: "Sides",
-        desc: "Golden crumb-fried bhetki fillets served crispy with seasoned french fries, lemon wedge, and creamy tartar dip.",
-        driveFileId: "1uNKwLiHrsh8Hy7u0OmMNhNHHNxkc92LM",
-        fallbackImg: "https://drive.google.com/thumbnail?id=1uNKwLiHrsh8Hy7u0OmMNhNHHNxkc92LM&sz=w1000"
-      },
-      {
-        name: "Grilled Chicken Breast",
-        tag: "Chef's Special",
-        category: "Chicken",
-        desc: "Tender flame-grilled chicken breast glazed in peppery brown jus with herb rice and sautéed garden veggies.",
-        driveFileId: "1acpzHuBmj4fWS9iA6qhkDwcxTMzR839e",
-        fallbackImg: "https://drive.google.com/thumbnail?id=1acpzHuBmj4fWS9iA6qhkDwcxTMzR839e&sz=w1000"
-      },
-      {
-        name: "Non Veg Mixed Sauce Pasta",
-        tag: "Sizzling Hot",
-        category: "Sizzlers",
-        desc: "Creamy, cheesy Italian pasta served on a piping-hot sizzler plate with smoky vegetables and garlic toast.",
-        driveFileId: "1xksc58kg7gMFaWfCFJc6gzj8IFeEhZvB",
-        fallbackImg: "https://drive.google.com/thumbnail?id=1xksc58kg7gMFaWfCFJc6gzj8IFeEhZvB&sz=w1000"
-      },
-      {
-        name: "Nutella Pancakes",
-        tag: "Sweet Finale",
-        category: "Dessert",
-        desc: "Fluffy pancakes topped with rich Nutella chocolate and finished with whipped cream.",
-        driveFileId: "1243rG2MroXml8sduYuxtSd9V9UFAW472",
-        fallbackImg: "https://drive.google.com/thumbnail?id=1243rG2MroXml8sduYuxtSd9V9UFAW472&sz=w1000"
-      },
-      {
-        name: "Buffalo Chicken Wings",
-        tag: "Fan Favorite",
-        category: "Sides",
-        desc: "Juicy chicken wings tossed in a bold, tangy buffalo sauce and served with a creamy house dip.",
-        driveFileId: "1gZTS3esTaYVSxx-cfDEu5Esf7icFJHZR",
-        fallbackImg: "https://drive.google.com/thumbnail?id=1gZTS3esTaYVSxx-cfDEu5Esf7icFJHZR&sz=w1000"
-      }
-    ];
+      { name: "American Chicken Wrap", category: "Wraps", driveFileId: "1F7KAnPRQtoG_hqpDfSj8Xl3QeKyfFPsf" },
+      { name: "Banana Almond Chia Seed Smoothie", category: "Drinks", driveFileId: "15sK9hTbb7l-BxCTj03Os_A7gKuRamqiL" },
+      { name: "Blueberry Banana Smoothie", category: "Drinks", driveFileId: "1V4q8kNT_X4vpgAgAWc6XqQ3zIDBEMYGo" },
+      { name: "Blueberry Banana Whey Protein Smoothie", category: "Drinks", driveFileId: "1PXbUAusrj2ee-GQdteoHbXM10yYKzg58" },
+      { name: "Blueberry Pancakes", category: "Breakfast", driveFileId: "14Nm4ienEYWkzczmstOBk7hu2YlMaSo38" },
+      { name: "Boiled Egg Chickpeas Salad", category: "Salads", driveFileId: "12sfaECWPZhT672XKG9Nni0xBAtsg_0TC" },
+      { name: "Buffalo Chicken Wings", category: "Sides", driveFileId: "1gZTS3esTaYVSxx-cfDEu5Esf7icFJHZR" },
+      { name: "Cheese Garlic Bread", category: "Sides", driveFileId: "1kDFWGyI3LmI3YUzXsCtfQRf4oG5BSJUd" },
+      { name: "Cheese Stuffed Chicken Steak", category: "Chicken", driveFileId: "1hDPGZ3AxuW-qKQZZKhKOHhuUI1xBP31y" },
+      { name: "Chicken & Fried Egg Sandwich", category: "Sandwiches", driveFileId: "1eyzJ5loIyQU7rib0lq4md-wP-_BMMx8u" },
+      { name: "Chicken Caesar Salad", category: "Salads", driveFileId: "19zAa-w0XfipqoO6eiw0OH12JFFrtbzeM" },
+      { name: "Chicken Quesadilla", category: "Wraps", driveFileId: "11gCqaoFlnXYGEoXcQ2VBbImuQiysFjbL" },
+      { name: "Chicken Cordon Bleu", category: "Chicken", driveFileId: "13hgdOYASGPrW9I9Aa_60AYAgHkX-dvtq" },
+      { name: "Chicken Lasagna", category: "Pasta", driveFileId: "18ndzkzy6fRhr7pH6yPnsBp6SOFwJcNdo" },
+      { name: "Chicken Quesadillas", category: "Wraps", driveFileId: "1_v6hg-QmuYC4Ud7AhluFIy_Y8IpCxwYJ" },
+      { name: "Chicken Stew", category: "Soups", driveFileId: "1w8sOrONn7ZmYUSvoAHRPmpxT9fF7fzGy" },
+      { name: "Chicken Wings Biryani", category: "Biryani", driveFileId: "1ku7Y2-eQ59sq0NHVs7Ohd9HsfUndJ8mA" },
+      { name: "Cream of Broccoli Soup", category: "Soups", driveFileId: "1rOrYqJqr3z6od81SdMw3acqMqpCLz1AA" },
+      { name: "Cream of Chicken Soup", category: "Soups", driveFileId: "1w4MbF8W_I1xfapQIlkPrR-rRoGu7Q0WS" },
+      { name: "Cream of Mushroom Soup", category: "Soups", driveFileId: "1dWMWRcDPysIHyX9-dwesUaiX4plYm5qX" },
+      { name: "Creamy Chicken & Cheese Sandwich", category: "Sandwiches", driveFileId: "1JUA9kuJKvbAYDGph40iebPgBnvO4g3f3" },
+      { name: "Crispy Chicken Thai", category: "Chicken", driveFileId: "1YRsseJxTkS8IZAxHnlem6Z7CoXi36SuG" },
+      { name: "Crumb Fried Fish with Tartar Sauce", category: "Sides", driveFileId: "1uNKwLiHrsh8Hy7u0OmMNhNHHNxkc92LM" },
+      { name: "Extra Crunchy Chicken Burger", category: "Burgers", driveFileId: "1fhqmp6X_pTvGymqw3i-d-LZKhlifs-Fp" },
+      { name: "Farmer's Market Veg Quesadillas", category: "Wraps", driveFileId: "1Htif71YTHJlvpsJQGTFzy7Pi_Y-SDlj2" },
+      { name: "Falafel Wrap", category: "Wraps", driveFileId: "1TXt4bj_lmBcHl1z9JHsbTaXnijJ7XjYf" },
+      { name: "Fish Croquettes", category: "Sides", driveFileId: "1-jjvKVQjQ_sL5RfCO0P-8W9IC4EOGg9O" },
+      { name: "Garden Fresh Exotic Veggies Pesto Sandwich", category: "Sandwiches", driveFileId: "1E2vCEd2TjiJWK8DuZd3mBYE6VY9JeekJ" },
+      { name: "Greek Salad", category: "Salads", driveFileId: "1ygAF4OyLlkEdEUtn2QtoHON6RW8XsE86" },
+      { name: "Grilled Chicken Biryani", category: "Biryani", driveFileId: "1N3Ng9Naw0GwTMMo_rErumzr26SRR3Ap0" },
+      { name: "Grilled Chicken Breast with Sauteed Veggies and Herb Rice", category: "Sizzlers", driveFileId: "1acpzHuBmj4fWS9iA6qhkDwcxTMzR839e" },
+      { name: "Grilled Chicken Steak in Choice of Sauce", category: "Sizzlers", driveFileId: "1OCGN43RJlY6YFkG0P6YzYESObFwnYgA8" },
+      { name: "Grilled Chicken Strips", category: "Sides", driveFileId: "1tG1MWSnjCF16p2wu7H-Qglqyl2coUuNv" },
+      { name: "Grilled Chicken Wings", category: "Sides", driveFileId: "1XipL4NlGCJSqsHWqkRlnUQC2MtCXokoC" },
+      { name: "Grilled Fish with Sauteed Veggies and Herb Rice", category: "Sizzlers", driveFileId: "1hL9IWKG_UeMtgxpvtsog7RkaPZMPn29c" },
+      { name: "Herb Garden Lasagna", category: "Pasta", driveFileId: "1CMyW6Yr-40sE_yO_7t9KgLihIeZckLIn" },
+      { name: "Jerk Chicken Burger", category: "Burgers", driveFileId: "1LE_C1yQU9h7rR1FizHG7i48nrF-Pm1_f" },
+      { name: "Korean Chicken Biryani", category: "Biryani", driveFileId: "1BeOcaKEXvmsOBkqSP8I8U2eeRHUX1FM_" },
+      { name: "Korean Chicken Wings", category: "Sides", driveFileId: "1f7YrJW4XW6F4tA0lNaAjbrsioWpnyNq3" },
+      { name: "Masala Cheese Omelette", category: "Breakfast", driveFileId: "1qCiK_zk9itU73eZoq--vhnYaoVZgROQn" },
+      { name: "Mexican Chicken Wrap", category: "Wraps", driveFileId: "1IkLY3T8VbgVsq2F7zZ1fHThAA9mAcBJG" },
+      { name: "Mushroom Cheese Sandwich", category: "Sandwiches", driveFileId: "1mQEaEPg383z58zy1zkU6AV4pG7dP0kJ7" },
+      { name: "Mushroom Omelette", category: "Breakfast", driveFileId: "1DEofv5RKOumbaDn31IzDrwFkz_oy_iuf" },
+      { name: "Non Veg Continental Platter", category: "Sizzlers", driveFileId: "1iWGT6dpAnOwVnYtOzS0QDmlfJxXHpvD0" },
+      { name: "Non Veg Mixed Sauce Pasta", category: "Pasta", driveFileId: "1xksc58kg7gMFaWfCFJc6gzj8IFeEhZvB" },
+      { name: "Non Veg Starter Platter", category: "Sides", driveFileId: "1_SvnmAPxiqSUqc0COSq2DygrlIB4TgFj" },
+      { name: "Nutella Chocolate Shake", category: "Drinks", driveFileId: "1jLO3hLC0xmRoZOTGuR__TtpNPnFTYfuz" },
+      { name: "Nutella Pancakes", category: "Dessert", driveFileId: "1243rG2MroXml8sduYuxtSd9V9UFAW472" },
+      { name: "Oats Khichdi with Whole Egg Bhurji", category: "Breakfast", driveFileId: "17sJCiCjtJNU63Io8_CAK0RHmWPgnCCKy" },
+      { name: "Creamy Mexican Bean Rice Bowl", category: "Rice Bowls", driveFileId: "1K6PH3hm0ymanRSu7Rln6Qcgmn29hAdph" },
+      { name: "Creamy Mushroom Rice Bowl", category: "Rice Bowls", driveFileId: "1pyowVxgmjQSEyMesGpcFbg0e9Vfeq5H7" },
+      { name: "Fried Chicken Rice Bowl", category: "Rice Bowls", driveFileId: "1IQ_9wH_rGGE71eLyYlSMM2st1IEvsHos" },
+      { name: "Grilled Fish Rice Bowl", category: "Rice Bowls", driveFileId: "1ySDhsD5MzHpkxB67K5SOq-_g9lTURaBI" },
+      { name: "High-Protein Chicken Rice Bowl", category: "Rice Bowls", driveFileId: "1Hh3JftACgJ74PHTio6L3A6HDMv1qr7oN" },
+      { name: "High-Protein Pesto Paneer Bowl", category: "Rice Bowls", driveFileId: "1hEn2-iIAZt5x4Z-V6mUHpLEUfCs6Bc62" },
+      { name: "Korean Wings Rice Bowl", category: "Rice Bowls", driveFileId: "1uOSzPnIURIhejTHpssVdOipDiiHXiwq-" }
+    ].map((item) => ({
+      ...item,
+      tag: item.category
+    }));
 
     const LOCATIONS = [
       {
@@ -858,19 +816,14 @@
 
     function renderMenu() {
       const grid = document.getElementById('menu-grid');
-      const select = document.getElementById('drive-dish-select');
       grid.innerHTML = '';
-      select.innerHTML = '';
 
-      MENU_ITEMS.forEach((item, idx) => {
+      MENU_ITEMS.forEach((item) => {
         const matchesFilter = activeMenuFilter === 'All' || item.category === activeMenuFilter;
-        const matchesSearch = `${item.name} ${item.desc} ${item.tag}`.toLowerCase().includes(menuSearch);
-        if (!matchesFilter || !matchesSearch) {
-          select.innerHTML += `<option value="${idx}">${item.name}</option>`;
-          return;
-        }
+        const matchesSearch = `${item.name} ${item.category}`.toLowerCase().includes(menuSearch);
+        if (!matchesFilter || !matchesSearch) return;
 
-        const imgUrl = resolveDriveImage(item.driveFileId, item.fallbackImg);
+        const imgUrl = resolveDriveImage(item.driveFileId);
         const waMsg = encodeURIComponent(`Hi Supper Me! I'd love to order the ${item.name}.`);
         const isSelected = shortlistedItems.has(item.name);
 
@@ -878,7 +831,7 @@
           <article class="menu-card card-pop bg-brand-cream rounded-3xl overflow-hidden border border-gray-200/80 flex flex-col justify-between" data-category="${item.category}">
             <div>
               <div class="relative h-60 overflow-hidden bg-gray-100">
-                <img src="${imgUrl}" alt="${item.name}" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+                <img src="${imgUrl}" alt="${item.name}" loading="lazy" decoding="async" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
                 <span class="absolute top-3 left-3 bg-brand-dark/85 backdrop-blur-sm text-brand-saffron text-xs font-extrabold px-3 py-1 rounded-full">
                   ${item.tag}
                 </span>
@@ -890,7 +843,6 @@
               </div>
               <div class="p-6">
                 <h3 class="font-display text-2xl font-bold text-brand-dark">${item.name}</h3>
-                <p class="text-gray-600 text-sm mt-2 leading-relaxed">${item.desc}</p>
               </div>
             </div>
             <div class="px-6 pb-6 pt-2 flex items-center gap-2">
@@ -907,7 +859,6 @@
           </article>
         `;
 
-        select.innerHTML += `<option value="${idx}">${item.name}</option>`;
       });
 
       if (!grid.innerHTML) {
@@ -961,26 +912,6 @@
       document.getElementById('active-loc-whatsapp').href = `https://wa.me/917605054750?text=${waText}`;
     }
 
-    function toggleDriveModal() {
-      const modal = document.getElementById('drive-modal');
-      modal.classList.toggle('hidden');
-      modal.classList.toggle('flex');
-    }
-
-    function applyDriveImage() {
-      const idx = parseInt(document.getElementById('drive-dish-select').value, 10);
-      const raw = document.getElementById('drive-url-input').value.trim();
-      if (!raw) return;
-
-      // Extract File ID if a full Drive URL is pasted, otherwise treat input as raw ID
-      const match = raw.match(/\/d\/([a-zA-Z0-9_-]+)/) || raw.match(/id=([a-zA-Z0-9_-]+)/);
-      MENU_ITEMS[idx].driveFileId = match ? match[1] : raw;
-
-      renderMenu();
-      document.getElementById('drive-url-input').value = '';
-      toggleDriveModal();
-    }
-
     function toggleShortlist(name) {
       if (shortlistedItems.has(name)) {
         shortlistedItems.delete(name);
@@ -1005,11 +936,14 @@
       const selected = [...shortlistedItems];
 
       if (selected.length === 0) {
+        bar.classList.add('hidden');
+        bar.classList.remove('flex');
         bar.classList.remove('show');
         return;
       }
 
       bar.classList.remove('hidden');
+      bar.classList.add('flex');
       bar.classList.add('show');
       count.textContent = `${selected.length} dish${selected.length === 1 ? '' : 'es'} selected`;
       names.textContent = selected.join(' • ');
@@ -1018,10 +952,19 @@
     }
 
     function setupMenuFilters() {
-      document.querySelectorAll('.menu-filter').forEach((button) => {
+      const filterContainer = document.getElementById('menu-filters');
+      const categories = [...new Set(MENU_ITEMS.map((item) => item.category))].sort();
+      filterContainer.innerHTML = ['All', ...categories].map((category, index) => `
+        <button type="button" data-filter="${category}"
+                class="menu-filter ${index === 0 ? 'active' : ''} px-4 py-2 rounded-full border border-gray-200 text-sm font-bold transition-all">
+          ${category}
+        </button>
+      `).join('');
+
+      filterContainer.querySelectorAll('.menu-filter').forEach((button) => {
         button.addEventListener('click', () => {
           activeMenuFilter = button.dataset.filter;
-          document.querySelectorAll('.menu-filter').forEach((item) => item.classList.remove('active'));
+          filterContainer.querySelectorAll('.menu-filter').forEach((item) => item.classList.remove('active'));
           button.classList.add('active');
           renderMenu();
         });
