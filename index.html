@@ -102,6 +102,12 @@
       border-color: #2E7D32;
       box-shadow: 0 8px 18px -8px rgba(46, 125, 50, 0.55);
     }
+    .menu-filter-rail {
+      scrollbar-width: thin;
+      scrollbar-color: #8BC34A transparent;
+    }
+    .menu-filter-rail::-webkit-scrollbar { height: 4px; }
+    .menu-filter-rail::-webkit-scrollbar-thumb { background: #8BC34A; border-radius: 9999px; }
     #order-shortlist { transform: translate(-50%, 120px); transition: transform 0.35s ease; }
     #order-shortlist.show { transform: translate(-50%, 0); }
   </style>
@@ -330,7 +336,8 @@
 
       <!-- Menu cards are populated from the full photo gallery below -->
       <div class="mb-8 flex flex-col sm:flex-row gap-3 sm:items-center justify-between">
-        <div id="menu-filters" class="flex flex-wrap gap-2"></div>
+        <div id="menu-filters" role="group" aria-label="Filter menu by category" tabindex="0"
+             class="menu-filter-rail min-w-0 flex-1 -mx-4 flex snap-x snap-mandatory gap-2 overflow-x-auto overscroll-x-contain px-4 pb-1 scroll-smooth focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-green/50 sm:mx-0 sm:px-0"></div>
         <label class="relative block sm:w-72">
           <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400"></i>
           <input id="menu-search" type="search" placeholder="Search dishes..."
@@ -953,19 +960,31 @@
 
     function setupMenuFilters() {
       const filterContainer = document.getElementById('menu-filters');
-      const categories = [...new Set(MENU_ITEMS.map((item) => item.category))].sort();
-      filterContainer.innerHTML = ['All', ...categories].map((category, index) => `
-        <button type="button" data-filter="${category}"
-                class="menu-filter ${index === 0 ? 'active' : ''} px-4 py-2 rounded-full border border-gray-200 text-sm font-bold transition-all">
+      const categoryCounts = MENU_ITEMS.reduce((counts, item) => {
+        counts[item.category] = (counts[item.category] || 0) + 1;
+        return counts;
+      }, {});
+      const categories = ['All', ...Object.keys(categoryCounts).sort()];
+      filterContainer.innerHTML = categories.map((category, index) => {
+        const count = category === 'All' ? MENU_ITEMS.length : categoryCounts[category];
+        return `
+        <button type="button" data-filter="${category}" aria-pressed="${index === 0}"
+                title="Show ${count} ${category === 'All' ? 'dishes' : category + ' dishes'}"
+                class="menu-filter shrink-0 snap-start inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-gray-200 text-xs font-bold transition-all hover:border-brand-green focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-green/50 ${index === 0 ? 'active' : ''}">
           ${category}
+          <span class="rounded-full bg-black/5 px-1.5 py-0.5 text-[10px] leading-none">${count}</span>
         </button>
-      `).join('');
+      `;
+      }).join('');
 
       filterContainer.querySelectorAll('.menu-filter').forEach((button) => {
         button.addEventListener('click', () => {
           activeMenuFilter = button.dataset.filter;
-          filterContainer.querySelectorAll('.menu-filter').forEach((item) => item.classList.remove('active'));
-          button.classList.add('active');
+          filterContainer.querySelectorAll('.menu-filter').forEach((item) => {
+            const isSelected = item === button;
+            item.classList.toggle('active', isSelected);
+            item.setAttribute('aria-pressed', String(isSelected));
+          });
           renderMenu();
         });
       });
