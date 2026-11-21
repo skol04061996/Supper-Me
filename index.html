@@ -57,12 +57,156 @@
       color: #141A15;
       overflow-x: hidden;
     }
+    html { scroll-padding-top: 6rem; }
+    header {
+      box-shadow: 0 12px 34px rgba(20, 26, 21, 0.1);
+      border-color: rgba(20, 26, 21, 0.08);
+    }
+    header nav a {
+      position: relative;
+      padding: 0.5rem 0;
+    }
+    header nav a::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      height: 2px;
+      border-radius: 9999px;
+      background: #8BC34A;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.25s ease;
+    }
+    header nav a:hover::after,
+    header nav a:focus-visible::after { transform: scaleX(1); }
     .hero-pattern {
       background-color: #141A15;
       background-image: 
         radial-gradient(at 15% 20%, rgba(139, 195, 74, 0.25) 0px, transparent 50%),
         radial-gradient(at 85% 30%, rgba(255, 87, 34, 0.25) 0px, transparent 50%),
         radial-gradient(at 50% 85%, rgba(255, 179, 0, 0.2) 0px, transparent 55%);
+    }
+    #home {
+      isolation: isolate;
+      background-image:
+        radial-gradient(ellipse at 10% 12%, rgba(139, 195, 74, 0.25), transparent 38%),
+        radial-gradient(ellipse at 92% 18%, rgba(255, 87, 34, 0.23), transparent 34%),
+        radial-gradient(ellipse at 58% 95%, rgba(255, 179, 0, 0.12), transparent 42%),
+        linear-gradient(135deg, #121914, #18221a 55%, #251b16);
+    }
+    #home::before {
+      content: "";
+      position: absolute;
+      top: 8rem;
+      right: -14rem;
+      width: 34rem;
+      height: 34rem;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 50%;
+      box-shadow: 0 0 0 36px rgba(255, 255, 255, 0.025), 0 0 0 72px rgba(255, 255, 255, 0.02);
+      pointer-events: none;
+      z-index: -1;
+    }
+    #home .animate-float {
+      border-color: rgba(255, 255, 255, 0.24);
+      box-shadow: 0 34px 90px rgba(0, 0, 0, 0.48);
+      transition: box-shadow 0.35s ease, transform 0.35s ease;
+    }
+    #home .animate-float:hover {
+      box-shadow: 0 42px 100px rgba(0, 0, 0, 0.58);
+    }
+    #home .animate-float img {
+      transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+    }
+    #home .animate-float:hover img { transform: scale(1.05); }
+    #home .mt-16 {
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
+    }
+    #about {
+      position: relative;
+      isolation: isolate;
+    }
+    #about::before {
+      content: "";
+      position: absolute;
+      inset: 3rem 0;
+      z-index: -1;
+      background: radial-gradient(ellipse at 0% 50%, rgba(139, 195, 74, 0.1), transparent 42%);
+      pointer-events: none;
+    }
+    #about .grid div.bg-white {
+      border-color: rgba(46, 125, 50, 0.12);
+      box-shadow: 0 14px 36px rgba(20, 26, 21, 0.06);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    #about .grid div.bg-white:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 42px rgba(20, 26, 21, 0.11);
+    }
+    #about .bg-brand-dark {
+      box-shadow: 0 28px 70px rgba(20, 26, 21, 0.2);
+    }
+    #menu {
+      background: linear-gradient(180deg, #fff 0%, #fffdf7 100%);
+    }
+    #menu-grid .menu-card {
+      border-color: rgba(46, 125, 50, 0.13);
+      box-shadow: 0 14px 34px rgba(20, 26, 21, 0.07);
+    }
+    #menu-grid .menu-card:hover {
+      border-color: rgba(46, 125, 50, 0.35);
+      box-shadow: 0 24px 48px rgba(20, 26, 21, 0.14);
+    }
+    #menu-grid .menu-card h3 {
+      min-height: 2.3em;
+      line-height: 1.15;
+    }
+    #order {
+      background-image:
+        radial-gradient(ellipse at 5% 10%, rgba(139, 195, 74, 0.16), transparent 36%),
+        radial-gradient(ellipse at 95% 85%, rgba(255, 87, 34, 0.16), transparent 36%),
+        linear-gradient(135deg, #141a15, #1c261e 52%, #141a15);
+    }
+    #order .grid > a {
+      min-height: 21rem;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow: 0 22px 48px rgba(0, 0, 0, 0.24);
+    }
+    #order .grid > a:hover {
+      filter: saturate(1.12) brightness(1.04);
+    }
+    #reviews {
+      background:
+        radial-gradient(ellipse at 100% 30%, rgba(255, 179, 0, 0.08), transparent 38%),
+        #fffdf7;
+    }
+    #reviews .card-pop {
+      border-color: rgba(46, 125, 50, 0.14);
+      box-shadow: 0 16px 40px rgba(20, 26, 21, 0.07);
+    }
+    #reviews .card-pop:hover {
+      box-shadow: 0 26px 54px rgba(20, 26, 21, 0.13);
+    }
+    #locations {
+      background-image:
+        radial-gradient(ellipse at 0% 0%, rgba(139, 195, 74, 0.16), transparent 38%),
+        linear-gradient(135deg, #f4f7f2, #fffdf7);
+    }
+    #locations .sticky {
+      box-shadow: 0 24px 64px rgba(20, 26, 21, 0.12);
+    }
+    #locations-list {
+      scrollbar-width: thin;
+      scrollbar-color: #8BC34A transparent;
+    }
+    #contact {
+      background-image:
+        radial-gradient(ellipse at 90% 0%, rgba(139, 195, 74, 0.13), transparent 38%),
+        linear-gradient(135deg, #141a15, #1a241b);
     }
     .marquee-track {
       display: flex;
@@ -110,6 +254,14 @@
     .menu-filter-rail::-webkit-scrollbar-thumb { background: #8BC34A; border-radius: 9999px; }
     #order-shortlist { transform: translate(-50%, 120px); transition: transform 0.35s ease; }
     #order-shortlist.show { transform: translate(-50%, 0); }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
   </style>
 </head>
 <body class="antialiased selection:bg-brand-saffron selection:text-brand-dark">
@@ -432,7 +584,7 @@
   </section>
 
   <!-- Customer Reviews Section -->
-  <section class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section id="reviews" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center max-w-2xl mx-auto mb-14">
       <span class="inline-block px-3.5 py-1 rounded-full bg-brand-lime/20 text-brand-green font-extrabold text-xs uppercase tracking-wider">
         What Our Customers Say
@@ -1012,7 +1164,7 @@
     }
 
     function setupRevealAnimations() {
-      const targets = document.querySelectorAll('#about > div, #menu-grid, #order .grid, #locations .grid, footer');
+      const targets = document.querySelectorAll('#about > div, #order .grid, #locations .grid, footer');
       targets.forEach((target) => target.classList.add('reveal'));
       const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
