@@ -89,6 +89,51 @@ h1{max-width:12em;text-wrap:balance}
   .card,.tab,.chips button{transition:none!important}
   .card:hover,.tab:hover,.chips button:hover{transform:none}
 }
+body{text-shadow:0 1px 0 rgba(0,0,0,.12),0 2px 3px rgba(0,0,0,.08)}
+.hero h1{text-shadow:0 0 18px rgba(184,217,75,.18),0 2px 0 rgba(0,0,0,.22),0 5px 14px rgba(0,0,0,.22)}
+:root,:root:not([data-theme=light]){color-scheme:light;--bg:#edf1dc;--card:#faf9ed;--ink:#19271b;--mute:#53634e;--line:#bfd59a;--brand:#075e37;--lime:#9bc83f;--green:#075e37;--gsoft:#e8f0d4;--tint:#f2f4e4}
+body{background:radial-gradient(ellipse at 12% 0%,#dce9be 0,transparent 34rem),linear-gradient(135deg,#eef2df,#f9f8eb 48%,#eaf0d9);color:var(--ink)}
+.hero{padding:clamp(22px,4vw,42px) 0;background:#edf1dc;color:#fff}
+.hero .wrap{padding:clamp(26px,5vw,58px);border:8px solid #91c13b;outline:2px solid #075e37;border-radius:10px;background:radial-gradient(circle at 88% 18%,#a7c84c22,transparent 18rem),repeating-linear-gradient(135deg,#ffffff06 0 2px,transparent 2px 20px),linear-gradient(135deg,#164f32,#0b3523 72%);box-shadow:inset 0 0 0 2px #ffffff28,0 16px 38px #123c2226}
+.hero:before,.hero:after,.fl{display:none}
+.hero .brand{color:#c6e86a;background:#ffffff0b;border-color:#ffffff30}
+.brand-mark{border-color:#9bc83f;box-shadow:0 0 0 3px #9bc83f44}
+.hero-accent{color:#c4e65d}
+.deck{color:#edf4df}
+.mq{background:linear-gradient(90deg,#075e37,#397d35 50%,#075e37);color:#f7f7e8;border-block:4px solid #96c63b}
+.bar{background:rgba(249,248,235,.96);border-bottom-color:#b8d28d;box-shadow:0 8px 24px #264b2815}
+.tab{border-color:#6e9a47;color:#17452e}
+.tab.on{background:#075e37;border-color:#075e37;color:#fff;box-shadow:0 4px 0 #075e3738}
+.diets button{border-color:#bfd59a;background:#faf9ed;color:#193e29}
+.diets .on{background:#e8f0d4;color:#075e37;border-color:#075e37}
+.chips button{background:#e9f0d9;color:#24432c}
+.chips .on{background:#075e37;color:#fff}
+.page.on{position:relative;margin:clamp(18px,3vw,34px) auto;padding:clamp(18px,3.5vw,40px);border:8px solid #91c13b;outline:1px solid #075e37;background:radial-gradient(ellipse at 10% 20%,#eaf1d64d,transparent 22rem),radial-gradient(ellipse at 88% 68%,#dceab855,transparent 26rem),#faf9ed;box-shadow:inset 0 0 0 3px #ffffff,inset 0 0 0 4px #c5d89e,0 14px 36px #19391b24}
+.page.on>.cat{position:relative;z-index:1}
+.cat{padding-top:30px}
+.cat h2{color:#075e37;font:italic 700 clamp(24px,3.5vw,34px)/1.1 Georgia,serif;text-transform:uppercase;letter-spacing:.015em;border-bottom:2px solid #8bb83a;padding-bottom:8px;margin-bottom:8px}
+.cat h2 small{background:#e8f0d4;color:#075e37;border:1px solid #bfd59a}
+.ci{display:none}
+.grid{display:block}
+.card{position:relative;display:block;overflow:visible;border:0;border-bottom:1px dashed #bfd59a;border-radius:0;background:transparent;box-shadow:none;transition:none}
+.card:nth-child(even){background:#075e3707}
+.card:hover{transform:none;border-color:#7daa45;box-shadow:none}
+.media{position:absolute;right:0;top:8px;display:block;width:auto;height:auto;aspect-ratio:auto;padding:0;background:transparent;overflow:visible;z-index:2}
+.media img{display:none}
+.dt{position:static;background:#f6f7e9;color:#075e37;border:1px solid #bfd59a;box-shadow:none;backdrop-filter:none;font-size:10px;padding:2px 7px}
+.body{display:block;padding:10px 0 12px;gap:4px}
+.body h3{margin:0 0 3px;padding-right:82px;color:#19271b;font:700 16px/1.35 'DM Sans',sans-serif}
+.body p{display:none}
+.body ul{display:block;margin:0;padding:3px 0 0;border:0}
+li{align-items:baseline;font-size:13px;padding:3px 0}
+.vn{color:#53634e}
+.pr{color:#075e37;font:800 15px 'DM Sans',sans-serif}
+#none{color:#53634e}
+footer{color:#53634e}
+@media (max-width:600px){
+  .hero .wrap{border-width:5px;padding:24px 20px}
+  .page.on{border-width:5px;padding:16px}
+}
 </style></head><body>
 <script>document.documentElement.className='js'</script>
 <header class="hero"><div class="wrap"><p class="brand"><img class="brand-mark" src="assets/supper-me-brand-mark.png" alt=""><span>Supper Me</span></p><h1>Cravings, meet<br><span class="hero-accent">your passport.</span></h1><p class="deck">143 fresh-made plates.<br>One delicious trip around the world.</p>
