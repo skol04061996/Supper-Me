@@ -142,6 +142,12 @@ footer{color:#53634e}
   .dt{left:4px;top:4px;font-size:9px;padding:1px 5px}
   .pr{font-size:14px;padding:1px 6px}
 }
+:root:not([data-theme=light]) .nophoto .media,.nophoto .media{isolation:isolate;aspect-ratio:4/3;min-height:84px;background:radial-gradient(circle at 18% 22%,#ffffff38 0 1px,transparent 2px),radial-gradient(circle at 82% 76%,#ffffff30 0 2px,transparent 3px),linear-gradient(145deg,#397a4c,#0b442d);box-shadow:inset 0 0 0 1px #ffffff38,inset 0 -12px 24px #051f1480}
+.nophoto .media:before{content:"";position:absolute;left:12%;right:12%;top:13%;bottom:8%;border-radius:50%;background:radial-gradient(ellipse at 50% 42%,#fffdf3 0 46%,#dce5cc 48% 55%,#99b368 57% 60%,#faf8ed 62% 69%,#7d9d43 71% 75%,transparent 77%);filter:drop-shadow(0 8px 6px #06190fa6);transform:perspective(280px) rotateX(30deg);z-index:0}
+.nophoto .ph{z-index:1;font-size:clamp(38px,5vw,58px);filter:drop-shadow(0 7px 4px #071d14a8);text-shadow:0 2px 0 #ffffffa6,0 6px 10px #081b13a6;transform:perspective(220px) rotateX(10deg) translateY(-5px);transition:transform .35s ease,filter .35s ease}
+.card:hover .nophoto .ph{transform:perspective(220px) rotateX(10deg) translateY(-10px) scale(1.08) rotate(-5deg);filter:drop-shadow(0 12px 5px #071d14a8)}
+@media (max-width:600px){.nophoto .media{aspect-ratio:1/1;min-height:76px}}
+@media (prefers-reduced-motion:reduce){.nophoto .ph{transition:none}}
 </style></head><body>
 <script>document.documentElement.className='js'</script>
 <header class="hero"><div class="wrap"><p class="brand"><img class="brand-mark" src="assets/supper-me-brand-mark.png" alt=""><span>Supper Me</span></p><h1>Cravings, meet<br><span class="hero-accent">your passport.</span></h1><p class="deck">143 fresh-made plates.<br>One delicious trip around the world.</p>
